@@ -30,6 +30,7 @@ public class ZwierzeActivity extends AppCompatActivity {
     ImageView tZdjecie;
     Button tEdytuj;
     Button tWizyty;
+    String tnrMetryki;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,7 @@ public class ZwierzeActivity extends AppCompatActivity {
             tEdytuj = (Button)findViewById(R.id.Edytuj);
             tWizyty =(Button)findViewById(R.id.Leczenie);
 
-             FirebaseFirestore db = FirebaseFirestore.getInstance();
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
             db.collection("Zwierzeta").whereEqualTo("nrMetryki", zwierze.getNrMetryki()).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                 @Override
                 public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -74,7 +75,7 @@ public class ZwierzeActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(byte[] bytes) {
                                 Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                               // saveBitmap(couponName, bitmap);
+                                // saveBitmap(couponName, bitmap);
 
                                 tZdjecie.setImageBitmap(bitmap);
                             }
@@ -87,14 +88,15 @@ public class ZwierzeActivity extends AppCompatActivity {
                     }
                 }
             });
+            tnrMetryki = zwierze.getNrMetryki();
         }
 
         tZdjecie.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view) { //int position) {
                 //NOWE WIDOKI !!! NOWE WIDOKI !!!NOWE WIDOKI !!!NOWE WIDOKI !!!NOWE WIDOKI !!!NOWE WIDOKI !!!NOWE WIDOKI !!!
-                Intent intent = new Intent(ZwierzeActivity.this, AddAnimal.class);
-                //intent.putExtra("selected_zwierze", mZwierze.get(position));
+                Intent intent = new Intent(ZwierzeActivity.this, ZdjeciaActivity.class);
+                intent.putExtra("selected_zwierze", tnrMetryki);
                 startActivity(intent);
             }
         });

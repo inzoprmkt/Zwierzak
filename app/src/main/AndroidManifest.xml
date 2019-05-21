@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HistoriaWizyt"></activity>
+        <activity android:name=".ZdjeciaActivity"></activity>
+        <activity android:name=".HistoriaWizyt" />
         <activity android:name=".ZwierzeActivity" />
         <activity android:name=".wizRodz" />
         <activity android:name=".WyswietlZwierzaki" />
