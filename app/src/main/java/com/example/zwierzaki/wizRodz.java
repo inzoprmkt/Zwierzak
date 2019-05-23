@@ -212,7 +212,7 @@ public class wizRodz extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 Szczepienie szczepienie = new Szczepienie();
                                 szczepienie.setNumer_metryki(piesnr);
-                                szczepienie.setDate(data);
+                                szczepienie.setdate(data);
                                 szczepienie.setUid(currentUI);
                                 for (int i = 0; i < szczepUserItem.size(); i++) {
                                     if (checkedSzczep[szczepUserItem.get(i)]) {
@@ -261,7 +261,7 @@ public class wizRodz extends AppCompatActivity {
                     case "Wszczepienie chipa":
                         Chip chip = new Chip();
                         chip.setNumer_metryki(piesnr);
-                        chip.setDatech(data);
+                        chip.setdate(data);
                         chip.setUid(currentUI);
                         db.collection("Wizyta").add(chip).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                             @Override
@@ -295,7 +295,7 @@ public class wizRodz extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 Badanie badaniee = new Badanie();
                                 badaniee.setNumer_metryki(piesnr);
-                                badaniee.setDatee(data);
+                                badaniee.setdate(data);
                                 badaniee.setUid(currentUI);
                                 for (int i = 0; i < badUserItem.size(); i++) {
                                     if (checkedBad[badUserItem.get(i)]) {
@@ -408,7 +408,7 @@ public class wizRodz extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 ZabHigien zabHigien = new ZabHigien();
                                 zabHigien.setNumer_metryki(piesnr);
-                                zabHigien.setDatezh(data);
+                                zabHigien.setdate(data);
                                 zabHigien.setUid(currentUI);
                                 for (int i = 0; i < higienUserItem.size(); i++) {
                                     if (checkedHigien[higienUserItem.get(i)]) {

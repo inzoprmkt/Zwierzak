@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Chip {
     private String uid;
-    private Date datech;
+    private Date date;
     private String numer_metryki;
     private String typ;
 
@@ -12,9 +12,9 @@ public class Chip {
         typ="Chip";
     }
 
-    public Chip(String uid, Date datech, String numer_metryki,String type) {
+    public Chip(String uid, Date date, String numer_metryki,String type) {
         this.uid = uid;
-        this.datech = datech;
+        this.date = date;
         this.numer_metryki = numer_metryki;
         this.typ=type;
 
@@ -28,12 +28,12 @@ public class Chip {
         this.uid = uid;
     }
 
-    public Date getDatech() {
-        return datech;
+    public Date getdate() {
+        return date;
     }
 
-    public void setDatech(Date datech) {
-        this.datech = datech;
+    public void setdate(Date date) {
+        this.date = date;
     }
 
     public String getNumer_metryki() {

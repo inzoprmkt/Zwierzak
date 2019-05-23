@@ -51,11 +51,11 @@ public class Badanie {
         this.uid = uid;
     }
 
-    public Date getDatee() {
+    public Date getdate() {
         return date;
     }
 
-    public void setDatee(Date date) {
+    public void setdate(Date date) {
         this.date = date;
     }
 

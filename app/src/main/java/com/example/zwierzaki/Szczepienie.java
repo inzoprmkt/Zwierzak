@@ -44,11 +44,11 @@ public class Szczepienie {
         this.uid = uid;
     }
 
-    public Date getDate() {
+    public Date getdate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setdate(Date date) {
         this.date = date;
     }
 

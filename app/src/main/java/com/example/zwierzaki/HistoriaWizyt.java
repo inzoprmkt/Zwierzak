@@ -1,12 +1,18 @@
 package com.example.zwierzaki;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,20 +31,24 @@ public class HistoriaWizyt extends AppCompatActivity {
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private Button wyswietlWizyty;
     private String currentUI;
+    private TableLayout tab;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_historia_wizyt);
         spiner=findViewById(R.id.spinnerZwierzeta);
-        wyswietlWizyty=findViewById(R.id.buttonHistWizyt);
+        wyswietlWizyty=findViewById(R.id.buttonWyswietl);
+        tab=findViewById(R.id.tablica);
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        String currentUI = currentUser.getUid();
+        currentUI = currentUser.getUid();
+
         final List<String> subjects = new ArrayList<>();
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, subjects);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spiner.setAdapter(adapter);
-        db.collection("Wizyty").whereEqualTo("uid", currentUI).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        db.collection("Zwierzeta").whereEqualTo("uid", currentUI).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for (DocumentSnapshot document : queryDocumentSnapshots) {
@@ -48,6 +58,7 @@ public class HistoriaWizyt extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }
         });
+
         wyswietlWizyty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,15 +68,28 @@ public class HistoriaWizyt extends AppCompatActivity {
     }
 
     private void showVisit() {
+
         String tekst = spiner.getSelectedItem().toString();
         String[] czesci = tekst.split(" ");
         final String piesnr = czesci[czesci.length - 1];
-        db.collection("Wizyty").whereEqualTo("uid", currentUI).whereEqualTo("uid", currentUI).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+
+
+        db.collection("Wizyta").whereEqualTo("numer_metryki", piesnr).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for (DocumentSnapshot document : queryDocumentSnapshots) {
-                    String wiersz = document.getString("imieZwierzecia") + "   " + document.getString("nrMetryki");
+                    TextView a;
+                    TableRow row;
 
+                    a=new TextView(getApplicationContext());
+                    a.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
+                    String wiersz = document.getString("typ") + "   " + document.get("date").toString();
+                    a.setText(wiersz);
+                    Toast.makeText(HistoriaWizyt.this, wiersz, Toast.LENGTH_SHORT).show();
+                    row =new TableRow(getApplicationContext());
+                    row.setLayoutParams(new TableRow.LayoutParams(TableLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                    row.addView(a);
+                    tab.addView(row);
                 }
 
             }

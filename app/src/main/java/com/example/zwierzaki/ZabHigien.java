@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class ZabHigien {
     private String uid;
-    private Date datezh;
+    private Date date;
     private boolean c_zebow;
     private boolean kleszcz;
     private boolean c_uszu;
@@ -23,9 +23,9 @@ public class ZabHigien {
         usuw_kamienia=false;
     }
 
-    public ZabHigien(String uidzh, Date datezh, boolean c_zebow, boolean kleszcz, boolean c_uszu, boolean strzyzenie, boolean usuw_kamienia, String inne,String nrmetr,String type) {
+    public ZabHigien(String uidzh, Date date, boolean c_zebow, boolean kleszcz, boolean c_uszu, boolean strzyzenie, boolean usuw_kamienia, String inne,String nrmetr,String type) {
         this.uid = uidzh;
-        this.datezh = datezh;
+        this.date = date;
         this.c_zebow = c_zebow;
         this.kleszcz = kleszcz;
         this.c_uszu = c_uszu;
@@ -44,12 +44,12 @@ public class ZabHigien {
         this.uid = uid;
     }
 
-    public Date getDatezh() {
-        return datezh;
+    public Date getdate() {
+        return date;
     }
 
-    public void setDatezh(Date datezh) {
-        this.datezh = datezh;
+    public void setdate(Date date) {
+        this.date = date;
     }
 
     public boolean isC_zebow() {
