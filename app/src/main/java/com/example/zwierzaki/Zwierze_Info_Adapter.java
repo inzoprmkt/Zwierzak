@@ -23,7 +23,7 @@ import java.lang.ref.Reference;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Zwierze_Info_Adapter extends RecyclerView.Adapter<Zwierze_Info_Adapter.ViewHolder> {
+public class  Zwierze_Info_Adapter extends RecyclerView.Adapter<Zwierze_Info_Adapter.ViewHolder> {
 
     private ArrayList<Zwierze> mNotes = new ArrayList<>();
     private  OnZwierzeListener mOnZwierzeListener;

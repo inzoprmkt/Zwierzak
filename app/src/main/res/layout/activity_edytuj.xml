@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#CEE3F6"
+    tools:context=".ZwierzeActivity">
+
+    <TextView
+        android:id="@+id/textData2"
+        android:layout_width="170dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:text="Data urodzenia:"
+        android:textAlignment="textEnd"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toStartOf="@+id/textData"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textPlec2" />
+
+    <EditText
+        android:id="@+id/textData"
+        android:layout_width="192dp"
+        android:layout_height="40dp"
+        android:text="..."
+        android:textAlignment="textStart"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textData2"
+        app:layout_constraintTop_toBottomOf="@+id/textPlec"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textPlec2"
+        android:layout_width="170dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:text="Płeć:"
+        android:textAlignment="textEnd"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toStartOf="@+id/textPlec"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textNrMetrykiMatki2" />
+
+    <EditText
+        android:id="@+id/textPlec"
+        android:layout_width="192dp"
+        android:layout_height="40dp"
+        android:text="..."
+        android:textAlignment="textStart"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textPlec2"
+        app:layout_constraintTop_toBottomOf="@+id/textNrMetrykiMatki"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textNrMetrykiOjca2"
+        android:layout_width="170dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:text="Nr. Metryki Ojca:"
+        android:textAlignment="textEnd"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toStartOf="@+id/textNrMetrykiOjca"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textImie2" />
+
+    <EditText
+        android:id="@+id/textNrMetrykiOjca"
+        android:layout_width="192dp"
+        android:layout_height="40dp"
+        android:text="..."
+        android:textAlignment="textStart"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textNrMetrykiOjca2"
+        app:layout_constraintTop_toBottomOf="@+id/textImie"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textImie2"
+        android:layout_width="170dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:text="Imie:"
+        android:textAlignment="textEnd"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toStartOf="@+id/textImie"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textNrMetryki2" />
+
+    <EditText
+        android:id="@+id/textImie"
+        android:layout_width="192dp"
+        android:layout_height="40dp"
+        android:text="..."
+        android:textAlignment="textStart"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textImie2"
+        app:layout_constraintTop_toBottomOf="@+id/textNrMetryki"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/textNrMetryki"
+        android:layout_width="192dp"
+        android:layout_height="40dp"
+        android:text="..."
+        android:textAlignment="textStart"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textNrMetryki2"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewZwierze"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textNrMetrykiMatki2"
+        android:layout_width="170dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:text="Nr. Metryki Matki:"
+        android:textAlignment="textEnd"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toStartOf="@+id/textNrMetrykiMatki"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textNrMetrykiOjca2" />
+
+    <EditText
+        android:id="@+id/textNrMetrykiMatki"
+        android:layout_width="192dp"
+        android:layout_height="40dp"
+        android:text="..."
+        android:textAlignment="textStart"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textNrMetrykiMatki2"
+        app:layout_constraintTop_toBottomOf="@+id/textNrMetrykiOjca"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textNrMetryki2"
+        android:layout_width="170dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:text="Nr. Metryki:"
+        android:textAlignment="textEnd"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toStartOf="@+id/textNrMetryki"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewZwierze" />
+
+    <ImageView
+        android:id="@+id/imageViewZwierze"
+        android:layout_width="match_parent"
+        android:layout_height="176dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/common_google_signin_btn_icon_light_normal_background" />
+
+    <Button
+        android:id="@+id/bZapisz"
+        android:layout_width="305dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Zapisz"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textData" />
+
+</android.support.constraint.ConstraintLayout>

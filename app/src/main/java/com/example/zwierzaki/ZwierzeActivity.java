@@ -94,7 +94,6 @@ public class ZwierzeActivity extends AppCompatActivity {
         tZdjecie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { //int position) {
-                //NOWE WIDOKI !!! NOWE WIDOKI !!!NOWE WIDOKI !!!NOWE WIDOKI !!!NOWE WIDOKI !!!NOWE WIDOKI !!!NOWE WIDOKI !!!
                 Intent intent = new Intent(ZwierzeActivity.this, ZdjeciaActivity.class);
                 intent.putExtra("selected_zwierze", tnrMetryki);
                 startActivity(intent);
@@ -104,8 +103,8 @@ public class ZwierzeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //NOWE WIDOKI !!! NOWE WIDOKI !!!NOWE WIDOKI !!!NOWE WIDOKI !!!NOWE WIDOKI !!!NOWE WIDOKI !!!NOWE WIDOKI !!!
-                Intent intent = new Intent(ZwierzeActivity.this, AddAnimal.class);
-                //intent.putExtra("selected_zwierze", mZwierze.get(position));
+                Intent intent = new Intent(ZwierzeActivity.this, EdytujActivity.class);
+                intent.putExtra("selected_zwierze", tnrMetryki);
                 startActivity(intent);
             }
         });

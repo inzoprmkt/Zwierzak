@@ -27,7 +27,7 @@ public class ZdjeciaActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
 
     private List<byte[]> mUploads;
-    private Zdjecie_Info_Adapter mAdapter;
+   // private Zdjecie_Info_Adapter mAdapter;
 
     //private ProgressBar mProgressCircle;
 
