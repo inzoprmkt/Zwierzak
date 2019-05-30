@@ -1,6 +1,7 @@
 package com.example.zwierzaki;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -31,7 +32,7 @@ public class HistoriaWizyt extends AppCompatActivity {
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private Button wyswietlWizyty;
     private String currentUI;
-    private TableLayout tab;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +40,7 @@ public class HistoriaWizyt extends AppCompatActivity {
         setContentView(R.layout.activity_historia_wizyt);
         spiner=findViewById(R.id.spinnerZwierzeta);
         wyswietlWizyty=findViewById(R.id.buttonWyswietl);
-        tab=findViewById(R.id.tablica);
+
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         currentUI = currentUser.getUid();
@@ -62,12 +63,14 @@ public class HistoriaWizyt extends AppCompatActivity {
         wyswietlWizyty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showVisit();
+                Intent i = new Intent(HistoriaWizyt.this,WyswietlHistorie.class);
+                i.putExtra("selected_spinner", spiner.getSelectedItem().toString());
+                startActivity(i);
             }
         });
     }
 
-    private void showVisit() {
+    /*private void showVisit() {
 
         String tekst = spiner.getSelectedItem().toString();
         String[] czesci = tekst.split(" ");
@@ -94,7 +97,8 @@ public class HistoriaWizyt extends AppCompatActivity {
 
             }
         });
-    }
+    }*/
+
 
 
 }
