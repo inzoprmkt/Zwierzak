@@ -22,6 +22,11 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme" >
+        <activity android:name="com.example.zwierzaki.BadanieActivity" />
+        <activity android:name="com.example.zwierzaki.SzczepienieActivity" />
+        <activity android:name="com.example.zwierzaki.ZabHigienActivity" />
+        <activity android:name="com.example.zwierzaki.ChipActivity" />
+        <activity android:name="com.example.zwierzaki.ZabiegActivity" />
         <activity android:name="com.example.zwierzaki.WyswietlHistorie" />
         <activity android:name="com.example.zwierzaki.EdytujActivity" />
         <activity android:name="com.example.zwierzaki.ZdjeciaActivity" />

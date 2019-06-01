@@ -367,7 +367,7 @@ public class wizRodz extends AppCompatActivity {
                                 if (wantToCloseDialog) {
                                     Zabieg zabieg = new Zabieg();
                                     zabieg.setNumer_metryki(piesnr);
-                                    zabieg.setDatez(data);
+                                    zabieg.setDate(data);
                                     zabieg.setUid(currentUI);
                                     zabieg.setOpis(subEditTextZab.getText().toString());
                                     db.collection("Wizyta").add(zabieg).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {

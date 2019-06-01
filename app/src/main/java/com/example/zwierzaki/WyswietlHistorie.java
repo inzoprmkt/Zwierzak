@@ -17,9 +17,11 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
-public class WyswietlHistorie extends AppCompatActivity {
+public class WyswietlHistorie  extends AppCompatActivity implements Wizyta_Info_Adapter.OnWizytaListener {
 
     private static final String TAG = "WyswietlHistorie";
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -28,63 +30,96 @@ public class WyswietlHistorie extends AppCompatActivity {
     String currentUI = currentUser.getUid();
     private CollectionReference listaWizyt = db.collection("Wizyta");
     private RecyclerView mRecyclerView;
-    private ArrayList<Zwierze> mZwierze = new ArrayList<>();
-    private Zwierze_Info_Adapter mZwierze_Info_Adapter;
+    private ArrayList<Wizyta> mZwierze = new ArrayList<>();
+    private Wizyta_Info_Adapter mWizyta_Info_Adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wyswietl_historie);
-        mRecyclerView = findViewById(R.id.recyclerView);
+        mRecyclerView = findViewById(R.id.recycler);
 
-        if(getIntent().hasExtra("selected_spinner")) {
+        if (getIntent().hasExtra("selected_spinner")) {
             String ciag = getIntent().getStringExtra("selected_spinner");
-            String[] parts = ciag.split("-");
+            String[] parts = ciag.split(" ");
             String nrMetr = parts[parts.length - 1];
-            Toast.makeText(WyswietlHistorie.this, "dziala", Toast.LENGTH_SHORT).show();
 
+            Toast.makeText(WyswietlHistorie.this, "|"+nrMetr+"|", Toast.LENGTH_SHORT).show();
+//.orderBy("date", Query.Direction.DESCENDING)
 
-            listaWizyt.whereEqualTo("numer_metryki", nrMetr).orderBy("date", Query.Direction.DESCENDING).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            listaWizyt.whereEqualTo("numer_metryki", nrMetr).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                 @Override
                 public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
                     if (!queryDocumentSnapshots.isEmpty()) {
                         initRecyclerView();
-                        for (QueryDocumentSnapshot documentSnapshots : queryDocumentSnapshots) {
-                            Zwierze zwierze = new Zwierze();
-                            documentSnapshots.get("imieZwierzecia");
+                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                            Wizyta nowa = new Wizyta(new Date(documentSnapshot.get("date").toString()), documentSnapshot.get("typ").toString(), documentSnapshot.get("numer_metryki").toString());
                             //Toast.makeText(WyswietlZwierzaki.this, documentSnapshots.get("imieZwierzecia").toString()+" ", Toast.LENGTH_SHORT).show();
 
-                            zwierze.setNrMetryki(documentSnapshots.get("nrMetryki").toString());
-                            zwierze.setImieZwierzecia(documentSnapshots.get("imieZwierzecia").toString());
+                            //zwierze.setNrMetryki(documentSnapshot.get("nrMetryki").toString());
+                            // zwierze.setImieZwierzecia(documentSnapshot.get("imieZwierzecia").toString());
                        /* zwierze.setDatUr(documentSnapshots.get("datUr").toString());
                         zwierze.setNrMetrykiMatki(documentSnapshots.get("nrMetrykiMatki").toString());
                         zwierze.setNrMetrykiOjca(documentSnapshots.get("nrMetrykiOjca").toString());
                         zwierze.setPlec(documentSnapshots.get("plec").toString());
                         zwierze.setZdjecie(documentSnapshots.get("zdjecie").toString());*/
-                            mZwierze.add(zwierze);
+                            mZwierze.add(nowa);
                         }
                     }
                 }
+
             });
         }
     }
 
-    private void initRecyclerView(){
+    private void initRecyclerView() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(linearLayoutManager);
         VerticalSpacingItemDecorator itemDecorator = new VerticalSpacingItemDecorator(10);
         mRecyclerView.addItemDecoration(itemDecorator);
-       // mZwierze_Info_Adapter = new Zwierze_Info_Adapter(mZwierze, this);
-       // mRecyclerView.setAdapter(mZwierze_Info_Adapter);
+         mWizyta_Info_Adapter = new Wizyta_Info_Adapter(mZwierze, this);
+         mRecyclerView.setAdapter(mWizyta_Info_Adapter);
     }
 
-    /*@Override
-    public void onZwierzeClick(int position) {
-        Log.d(TAG, "onZwierzeClick: clicked." + position);
-        //mZwierze.get(position);
-        Intent intent = new Intent(this, ZwierzeActivity.class);
-        intent.putExtra("selected_zwierze", mZwierze.get(position));
-        startActivity(intent);
-    }*/
+    @Override
+    public void onWizytaClick(int position) {
+        Log.d(TAG, "onWizytaClick: clicked." + position);
+        System.out.println("Dziala");
+        Wizyta wizyt =mZwierze.get(position);
+
+        switch (wizyt.getTyp())
+        {
+            case"Zabieg":
+                Intent intent = new Intent(this, ZabiegActivity.class);
+                //intent.putExtra("selected_zwierze", mZwierze.get(position));
+                startActivity(intent);
+            break;
+            case"Chip":
+                Intent intent1 = new Intent(this, ChipActivity.class);
+               // intent.putExtra("selected_zwierze", mZwierze.get(position));
+                startActivity(intent1);
+            break;
+            case"Zabieg Higieniczny":
+                Intent intent2 = new Intent(this, ZabHigienActivity.class);
+               // intent.putExtra("selected_zwierze", mZwierze.get(position));
+                startActivity(intent2);
+            break;
+            case"Szczepienie":
+                Intent  intent3 = new Intent(this, SzczepienieActivity.class);
+              //  intent.putExtra("selected_zwierze", mZwierze.get(position));
+                startActivity(intent3);
+            break;
+            case"Badanie":
+                Intent  intent4 = new Intent(this, BadanieActivity.class);
+              //  intent.putExtra("selected_zwierze", mZwierze.get(position));
+                startActivity(intent4);
+            break;
+        }
+
+
+    }
+
+
 }
 

@@ -40,6 +40,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 public class WyswietlZwierzaki extends AppCompatActivity implements Zwierze_Info_Adapter.OnZwierzeListener{
+
     private static final String TAG = "AddAnimal";
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();

@@ -6,7 +6,7 @@ public class Zabieg {
     private String Opis;
     private String numer_metryki;
     private String uid;
-    private Date datez;
+    private Date date;
     private String typ;
 
     public Zabieg() {
@@ -17,7 +17,7 @@ public class Zabieg {
         this.numer_metryki=nrmerr;
         this.uid=uid;
         this.Opis = opis;
-        this.datez = datez;
+        this.date = datez;
         this.typ=typez;
     }
 
@@ -30,12 +30,12 @@ public class Zabieg {
         Opis = opis;
     }
 
-    public Date getDatez() {
-        return datez;
+    public Date getDate() {
+        return date;
     }
 
-    public void setDatez(Date datez) {
-        this.datez = datez;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public String getNumer_metryki() {

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:orientation="horizontal"
+    android:weightSum="100"
+    android:background="#CEE3F6"
+    android:gravity="center_vertical">
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="#A9D0F5"/>
+
+    <TextView
+        android:id="@+id/vNazwaWizyty"
+        android:layout_width="14dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="55"
+        android:lines="1"
+        android:padding="10dp"
+        android:text="Nazwa"
+        android:textColor="@android:color/black"
+        android:textSize="13sp"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="4"
+        android:background="#CEECF5"/>
+
+    <TextView
+        android:id="@+id/vData"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="44"
+        android:lines="1"
+        android:padding="10dp"
+        android:text="Data"
+        android:textColor="@android:color/black"
+        android:textSize="13sp" />
+
+</LinearLayout>
