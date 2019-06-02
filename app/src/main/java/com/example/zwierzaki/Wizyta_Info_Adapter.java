@@ -1,5 +1,7 @@
 package com.example.zwierzaki;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,7 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Wizyta_Info_Adapter extends RecyclerView.Adapter<Wizyta_Info_Adapter.ViewHolder> {
 
@@ -26,9 +33,13 @@ public class Wizyta_Info_Adapter extends RecyclerView.Adapter<Wizyta_Info_Adapte
         return new ViewHolder(view, mOnWizytaListener);
     }
 
+    @TargetApi(Build.VERSION_CODES.O)
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        //Date data=new Date(mNotes.get(position).getDate().toString());
 
+       // DateTimeFormatter newPattern = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+       // LocalDateTime datetime = LocalDateTime.parse(mNotes.get(position).getDate().toString(), newPattern);
         holder.timestamp.setText(mNotes.get(position).getDate().toString());
         holder.typ.setText(mNotes.get(position).getTyp());
     }
@@ -46,6 +57,7 @@ public class Wizyta_Info_Adapter extends RecyclerView.Adapter<Wizyta_Info_Adapte
         public ViewHolder(@NonNull View itemView, OnWizytaListener onWizytaListener) {
             super(itemView);
             typ = itemView.findViewById(R.id.vNazwaWizyty);
+            //String data=new SimpleDateFormat("yyyy-MM-dd").format(date);
             timestamp = itemView.findViewById(R.id.vData);
             this.onWizytaListener = onWizytaListener;
 

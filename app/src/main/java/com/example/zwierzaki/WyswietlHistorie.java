@@ -18,8 +18,11 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 public class WyswietlHistorie  extends AppCompatActivity implements Wizyta_Info_Adapter.OnWizytaListener {
 
@@ -50,11 +53,14 @@ public class WyswietlHistorie  extends AppCompatActivity implements Wizyta_Info_
             listaWizyt.whereEqualTo("numer_metryki", nrMetr).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                 @Override
                 public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-
+//
                     if (!queryDocumentSnapshots.isEmpty()) {
                         initRecyclerView();
                         for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                            Wizyta nowa = new Wizyta(new Date(documentSnapshot.get("date").toString()), documentSnapshot.get("typ").toString(), documentSnapshot.get("numer_metryki").toString());
+
+                            System.out.println(date); // 2010-01-02
+                            System.out.println(documentSnapshot.get("date"));
+                            Wizyta nowa = new Wizyta(new Date(documentSnapshot.get("date").toString()), documentSnapshot.get("typ").toString(), documentSnapshot.get("numer_metryki").toString(),documentSnapshot.getId());
                             //Toast.makeText(WyswietlZwierzaki.this, documentSnapshots.get("imieZwierzecia").toString()+" ", Toast.LENGTH_SHORT).show();
 
                             //zwierze.setNrMetryki(documentSnapshot.get("nrMetryki").toString());
@@ -92,27 +98,27 @@ public class WyswietlHistorie  extends AppCompatActivity implements Wizyta_Info_
         {
             case"Zabieg":
                 Intent intent = new Intent(this, ZabiegActivity.class);
-                //intent.putExtra("selected_zwierze", mZwierze.get(position));
+                intent.putExtra("selected_wizyta", wizyt.getId());
                 startActivity(intent);
             break;
             case"Chip":
                 Intent intent1 = new Intent(this, ChipActivity.class);
-               // intent.putExtra("selected_zwierze", mZwierze.get(position));
+                intent1.putExtra("selected_wizyta", wizyt.getId());
                 startActivity(intent1);
             break;
             case"Zabieg Higieniczny":
                 Intent intent2 = new Intent(this, ZabHigienActivity.class);
-               // intent.putExtra("selected_zwierze", mZwierze.get(position));
+                intent2.putExtra("selected_wizyta", wizyt.getId());
                 startActivity(intent2);
             break;
             case"Szczepienie":
                 Intent  intent3 = new Intent(this, SzczepienieActivity.class);
-              //  intent.putExtra("selected_zwierze", mZwierze.get(position));
+                intent3.putExtra("selected_wizyta", wizyt.getId());
                 startActivity(intent3);
             break;
             case"Badanie":
                 Intent  intent4 = new Intent(this, BadanieActivity.class);
-              //  intent.putExtra("selected_zwierze", mZwierze.get(position));
+                intent4.putExtra("selected_wizyta", wizyt.getId());
                 startActivity(intent4);
             break;
         }

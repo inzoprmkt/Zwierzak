@@ -182,10 +182,12 @@ public class wizRodz extends AppCompatActivity {
             Date date = null;
             try {
                 date = formatter1.parse(strData);
+
             } catch (ParseException e) {
                 e.printStackTrace();
             }
             final Date data = date;
+            Toast.makeText(this, data.toString(), Toast.LENGTH_SHORT).show();
             for (int i = 0; i < mUserItems.size(); i++) {
                 switch (listItems[mUserItems.get(i)]) {
                     case "Szczepienie":
