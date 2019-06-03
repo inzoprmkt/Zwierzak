@@ -6,4 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".ChipActivity">
 
+    <Button
+        android:id="@+id/buttonUsunchip"
+        android:layout_width="178dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="340dp"
+        android:layout_marginEnd="28dp"
+        android:text="Usuń"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="232dp"
+        android:text="Data wszczepienia"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewDatawszczep"
+        android:layout_width="156dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="236dp"
+        android:layout_marginTop="232dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

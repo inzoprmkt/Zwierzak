@@ -10,11 +10,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 public class Wizyta_Info_Adapter extends RecyclerView.Adapter<Wizyta_Info_Adapter.ViewHolder> {
 
@@ -36,11 +39,11 @@ public class Wizyta_Info_Adapter extends RecyclerView.Adapter<Wizyta_Info_Adapte
     @TargetApi(Build.VERSION_CODES.O)
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        //Date data=new Date(mNotes.get(position).getDate().toString());
-
-       // DateTimeFormatter newPattern = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-       // LocalDateTime datetime = LocalDateTime.parse(mNotes.get(position).getDate().toString(), newPattern);
-        holder.timestamp.setText(mNotes.get(position).getDate().toString());
+        String string = mNotes.get(position).getDate().toString();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+        LocalDate date = LocalDate.parse(string, formatter);
+       // Date date1 = Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        holder.timestamp.setText(date.toString());
         holder.typ.setText(mNotes.get(position).getTyp());
     }
 

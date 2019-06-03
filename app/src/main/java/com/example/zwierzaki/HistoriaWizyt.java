@@ -38,8 +38,8 @@ public class HistoriaWizyt extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_historia_wizyt);
-        spiner=findViewById(R.id.spinnerZwierzeta);
-        wyswietlWizyty=findViewById(R.id.buttonWyswietl);
+        spiner = findViewById(R.id.spinnerZwierzeta);
+        wyswietlWizyty = findViewById(R.id.buttonWyswietl);
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -63,11 +63,25 @@ public class HistoriaWizyt extends AppCompatActivity {
         wyswietlWizyty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(HistoriaWizyt.this,WyswietlHistorie.class);
-                i.putExtra("selected_spinner", spiner.getSelectedItem().toString());
-                startActivity(i);
+                if (spiner.getSelectedItem() != null) {
+
+                    Intent i = new Intent(HistoriaWizyt.this, WyswietlHistorie.class);
+                    i.putExtra("selected_spinner", spiner.getSelectedItem().toString());
+                    startActivity(i);
+                }
             }
         });
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        recreate();
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        recreate();
     }
 
     /*private void showVisit() {
@@ -98,7 +112,6 @@ public class HistoriaWizyt extends AppCompatActivity {
             }
         });
     }*/
-
 
 
 }

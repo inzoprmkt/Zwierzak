@@ -1,6 +1,8 @@
 package com.example.zwierzaki;
 
 import android.content.Intent;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,6 +21,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
@@ -47,29 +50,21 @@ public class WyswietlHistorie  extends AppCompatActivity implements Wizyta_Info_
             String[] parts = ciag.split(" ");
             String nrMetr = parts[parts.length - 1];
 
-            Toast.makeText(WyswietlHistorie.this, "|"+nrMetr+"|", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(WyswietlHistorie.this, "|"+nrMetr+"|", Toast.LENGTH_SHORT).show();
 //.orderBy("date", Query.Direction.DESCENDING)
 
             listaWizyt.whereEqualTo("numer_metryki", nrMetr).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                @RequiresApi(api = Build.VERSION_CODES.O)
                 @Override
                 public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-//
                     if (!queryDocumentSnapshots.isEmpty()) {
                         initRecyclerView();
                         for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-
-                            System.out.println(date); // 2010-01-02
-                            System.out.println(documentSnapshot.get("date"));
-                            Wizyta nowa = new Wizyta(new Date(documentSnapshot.get("date").toString()), documentSnapshot.get("typ").toString(), documentSnapshot.get("numer_metryki").toString(),documentSnapshot.getId());
-                            //Toast.makeText(WyswietlZwierzaki.this, documentSnapshots.get("imieZwierzecia").toString()+" ", Toast.LENGTH_SHORT).show();
-
-                            //zwierze.setNrMetryki(documentSnapshot.get("nrMetryki").toString());
-                            // zwierze.setImieZwierzecia(documentSnapshot.get("imieZwierzecia").toString());
-                       /* zwierze.setDatUr(documentSnapshots.get("datUr").toString());
-                        zwierze.setNrMetrykiMatki(documentSnapshots.get("nrMetrykiMatki").toString());
-                        zwierze.setNrMetrykiOjca(documentSnapshots.get("nrMetrykiOjca").toString());
-                        zwierze.setPlec(documentSnapshots.get("plec").toString());
-                        zwierze.setZdjecie(documentSnapshots.get("zdjecie").toString());*/
+                            String string = documentSnapshot.get("date").toString();
+                           DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE MMM dd HH:mm:ss z yyyy",Locale.ENGLISH);
+                            LocalDate date = LocalDate.parse(string, formatter);
+                            Date date1 = Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                            Wizyta nowa = new Wizyta(date1, documentSnapshot.get("typ").toString(), documentSnapshot.get("numer_metryki").toString(),documentSnapshot.getId());
                             mZwierze.add(nowa);
                         }
                     }
@@ -90,10 +85,7 @@ public class WyswietlHistorie  extends AppCompatActivity implements Wizyta_Info_
 
     @Override
     public void onWizytaClick(int position) {
-        Log.d(TAG, "onWizytaClick: clicked." + position);
-        System.out.println("Dziala");
         Wizyta wizyt =mZwierze.get(position);
-
         switch (wizyt.getTyp())
         {
             case"Zabieg":

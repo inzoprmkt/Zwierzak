@@ -86,6 +86,10 @@ public class wizRodz extends AppCompatActivity {
         dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
         textKalendarzText = dayOfMonth + "/" + (month + 1) + "/" + year;
         textKalendarz.setText(textKalendarzText);
+        btnKalendarz = findViewById(R.id.buttonKalendarz2);
+        textKalendarz = findViewById(R.id.textViewKalendarz2);
+
+
         btnKalendarz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,13 +101,14 @@ public class wizRodz extends AppCompatActivity {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                                textKalendarzText = dayOfMonth + "/" + (month + 1) + "/" + year;
-                                textKalendarz.setText(textKalendarzText);
+                                textKalendarz.setText(day + "/" + (month + 1) + "/" + year);
                             }
                         }, year, month, dayOfMonth);
                 datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
                 //datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
                 datePickerDialog.show();
+
+
             }
         });
         listItems = getResources().getStringArray(R.array.shopping_item);
@@ -127,48 +132,45 @@ public class wizRodz extends AppCompatActivity {
     }
 
     public void btnlistaOgolna(View view) {
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final AlertDialog.Builder mBuilder = new AlertDialog.Builder(wizRodz.this);
-                mBuilder.setTitle(R.string.dialog_title);
-                mBuilder.setMultiChoiceItems(listItems, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int position, boolean isChecked) {
-                        if (isChecked) {
-                            mUserItems.add(position);
-                        } else {
-                            mUserItems.remove((Integer.valueOf(position)));
+        if (spinner.getSelectedItem() != null) {
+            final AlertDialog.Builder mBuilder = new AlertDialog.Builder(wizRodz.this);
+            mBuilder.setTitle(R.string.dialog_title);
+            mBuilder.setMultiChoiceItems(listItems, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int position, boolean isChecked) {
+                    if (isChecked) {
+                        mUserItems.add(position);
+                    } else {
+                        mUserItems.remove((Integer.valueOf(position)));
+                    }
+                }
+            });
+            mBuilder.setCancelable(false);
+            mBuilder.setPositiveButton(R.string.ok_label, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int which) {
+                    String item = "";
+                    for (int i = 0; i < mUserItems.size(); i++) {
+                        item = item + listItems[mUserItems.get(i)];
+                        if (i != mUserItems.size() - 1) {
+                            item = item + ", ";
                         }
                     }
-                });
-                mBuilder.setCancelable(false);
-                mBuilder.setPositiveButton(R.string.ok_label, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int which) {
-                        String item = "";
-                        for (int i = 0; i < mUserItems.size(); i++) {
-                            item = item + listItems[mUserItems.get(i)];
-                            if (i != mUserItems.size() - 1) {
-                                item = item + ", ";
-                            }
-                        }
-                        mItemSelected.setText(item);
-                        szczep(0);
-                    }
-                });
-                mBuilder.setNegativeButton(R.string.dismiss_label, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                });
-                AlertDialog mDialog = mBuilder.create();
-                mDialog.show();
-            }
-
-        });
+                    mItemSelected.setText(item);
+                    szczep(0);
+                }
+            });
+            mBuilder.setNegativeButton(R.string.dismiss_label, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                }
+            });
+            AlertDialog mDialog = mBuilder.create();
+            mDialog.show();
+        }
     }
+
 
     protected void szczep(int id) {
         if (!mUserItems.isEmpty()) {
