@@ -37,6 +37,7 @@ public class EdytujActivity extends AppCompatActivity {
     EditText tDatUr;
     ImageView tZdjecie;
     Button tZapisz;
+    Button tUsun;
     private FirebaseAuth mAuth;
     FirebaseUser currentUser;
     String currentUI;
@@ -53,7 +54,7 @@ public class EdytujActivity extends AppCompatActivity {
         currentUI=currentUser.getUid();
         if(getIntent().hasExtra("selected_zwierze")) {
             idZwierzaka = getIntent().getStringExtra("selected_zwierze");
-            Toast.makeText(EdytujActivity.this, idZwierzaka + "...", Toast.LENGTH_SHORT).show();
+        //    Toast.makeText(EdytujActivity.this, idZwierzaka + "...", Toast.LENGTH_SHORT).show();
             tNrMetryki = (EditText) findViewById(R.id.textNrMetryki);
             tNrMetryki.setText(idZwierzaka);
 
@@ -66,6 +67,7 @@ public class EdytujActivity extends AppCompatActivity {
             tDatUr = (EditText) findViewById(R.id.textData);
             tZdjecie = (ImageView) findViewById(R.id.imageViewZwierze);
             tZapisz = (Button) findViewById(R.id.bZapisz);
+            tUsun = (Button) findViewById(R.id.bUsun);
 
              db = FirebaseFirestore.getInstance();
             db.collection("Zwierzeta").whereEqualTo("nrMetryki", idZwierzaka).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -188,7 +190,7 @@ public class EdytujActivity extends AppCompatActivity {
                                                 .delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                                                     @Override
                                                     public void onSuccess(Void aVoid) {
-                                                        Toast.makeText(EdytujActivity.this, "DocumentSnapshot successfully deleted!", Toast.LENGTH_SHORT).show();
+                                                       /// Toast.makeText(EdytujActivity.this, "DocumentSnapshot successfully deleted!", Toast.LENGTH_SHORT).show();
                                                         //Log.d(TAG, "DocumentSnapshot successfully deleted!");
                                                     }
                                                 });
@@ -215,7 +217,25 @@ public class EdytujActivity extends AppCompatActivity {
                 //finish();*/
 
 
-        });}
+        });
+        tUsun.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { //int position) {
+                db.collection("Zwierzeta").document(idZwierzaka)
+                        .delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                         Toast.makeText(EdytujActivity.this, "Document successfully deleted!", Toast.LENGTH_SHORT).show();
+                        //Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                    }
+                });
+            }
+        });
+
+    }
+
+
+
     public boolean checkMetryka(String metryka) {
         boolean checkFormat = false;
         if (!metryka.isEmpty()) {

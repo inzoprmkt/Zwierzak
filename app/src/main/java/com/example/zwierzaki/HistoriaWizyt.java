@@ -73,7 +73,7 @@ public class HistoriaWizyt extends AppCompatActivity {
         });
     }
 
-    @Override
+   /* @Override
     protected void onRestart() {
         super.onRestart();
         recreate();
@@ -82,7 +82,7 @@ public class HistoriaWizyt extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         recreate();
-    }
+    }*/
 
     /*private void showVisit() {
 

@@ -15,7 +15,8 @@
             android:layout_marginTop="319dp"
             android:gravity="center"
             android:textColor="#000"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:visibility="invisible" />
 
     <Button
         android:id="@+id/logout"
@@ -23,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/user_email"
         android:layout_marginTop="30dp"
+        android:background="@color/colorAccent"
         android:text="Click Here To Logout" />
 
     <Button
@@ -31,10 +33,10 @@
         android:layout_height="58dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="113dp"
-        android:layout_marginTop="38dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="22dp"
         android:layout_marginEnd="136dp"
+        android:background="@color/colorAccent"
         android:text="Dodaj Zwierzaka" />
 
     <Button
@@ -43,10 +45,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/buttonAddAnimal"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="112dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="130dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorAccent"
         android:text="Wyświetl zwierzeta" />
 
     <Button
@@ -55,8 +56,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/buttonWyswietl"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="123dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="13dp"
+        android:background="@color/colorAccent"
         android:text="Wizyta" />
 
     <Button
@@ -65,8 +67,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="126dp"
-        android:layout_marginTop="256dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="233dp"
+        android:background="@color/colorAccent"
         android:text="Historia wizyt" />
 
 </RelativeLayout>

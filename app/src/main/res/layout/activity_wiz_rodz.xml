@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:background="#CEE3F6"
     android:gravity="clip_vertical"
     tools:context=".wizRodz">
 
@@ -65,6 +65,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
         android:layout_marginTop="131dp"
+        android:background="@color/colorPrimary"
         android:spinnerMode="dropdown" />
 
     <TextView
