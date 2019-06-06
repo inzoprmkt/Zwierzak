@@ -112,8 +112,8 @@ public class ZwierzeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //NOWE WIDOKI !!! NOWE WIDOKI !!!NOWE WIDOKI !!!NOWE WIDOKI !!!NOWE WIDOKI !!!NOWE WIDOKI !!!NOWE WIDOKI !!!
-                Intent intent = new Intent(ZwierzeActivity.this, AddAnimal.class);
-                //intent.putExtra("selected_zwierze", mZwierze.get(position));
+                Intent intent = new Intent(ZwierzeActivity.this,wizRodz.class);
+                intent.putExtra("selected_zwierze", tnrMetryki);
                 startActivity(intent);
             }
         });

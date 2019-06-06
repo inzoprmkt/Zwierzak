@@ -66,7 +66,9 @@ public class wizRodz extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private Spinner spinner;
     private String textKalendarzText;
-
+    private boolean czy_odwolanie;
+    private String zwierzeintent;
+    private int i;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,18 +120,33 @@ public class wizRodz extends AppCompatActivity {
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, subjects);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+        czy_odwolanie=false;
+        if(getIntent().hasExtra("selected_zwierze")) {
+            zwierzeintent = getIntent().getStringExtra("selected_zwierze");
+            czy_odwolanie=true;
+        }
+        i=0;
         db.collection("Zwierzeta").whereEqualTo("uid", currentUI).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for (DocumentSnapshot document : queryDocumentSnapshots) {
+                    if(czy_odwolanie==true)
+                    {
+                        if(document.getString("nrMetryki").toString().equals(zwierzeintent))
+                        {
+                            czy_odwolanie=false;
+                        }
+                        else { i++;}
+                    }
                     String wiersz = document.getString("imieZwierzecia") + "   " + document.getString("nrMetryki");
                     subjects.add(wiersz);
                 }
                 adapter.notifyDataSetChanged();
+                spinner.setSelection(i);
             }
         });
-
     }
+
 
     public void btnlistaOgolna(View view) {
         if (spinner.getSelectedItem() != null) {
