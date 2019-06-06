@@ -10,18 +10,20 @@
         android:id="@+id/buttonUsunzabieg"
         android:layout_width="178dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="432dp"
-        android:layout_marginEnd="52dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="117dp"
         android:text="Usuń"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewOpis" />
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="148dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="8dp"
         android:text="Data wizyty"
         app:layout_constraintEnd_toStartOf="@+id/textViewData"
@@ -43,7 +45,7 @@
         android:id="@+id/textViewData"
         android:layout_width="240dp"
         android:layout_height="25dp"
-        android:layout_marginTop="148dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="8dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,9 +56,11 @@
         android:layout_width="248dp"
         android:layout_height="200dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="208dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="2dp"
         android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewData" />
 
 </android.support.constraint.ConstraintLayout>

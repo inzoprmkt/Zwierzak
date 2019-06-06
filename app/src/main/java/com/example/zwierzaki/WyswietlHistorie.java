@@ -61,10 +61,10 @@ public class WyswietlHistorie  extends AppCompatActivity implements Wizyta_Info_
                         initRecyclerView();
                         for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                             String string = documentSnapshot.get("date").toString();
-                           DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE MMM dd HH:mm:ss z yyyy",Locale.ENGLISH);
+                           /*DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE MMM dd HH:mm:ss z yyyy",Locale.ENGLISH);
                             LocalDate date = LocalDate.parse(string, formatter);
-                            Date date1 = Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());
-                            Wizyta nowa = new Wizyta(date1, documentSnapshot.get("typ").toString(), documentSnapshot.get("numer_metryki").toString(),documentSnapshot.getId());
+                            Date date1 = Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());*/
+                            Wizyta nowa = new Wizyta(string, documentSnapshot.get("typ").toString(), documentSnapshot.get("numer_metryki").toString(),documentSnapshot.getId());
                             mZwierze.add(nowa);
                         }
                     }

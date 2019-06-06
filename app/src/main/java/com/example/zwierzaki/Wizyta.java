@@ -3,23 +3,23 @@ package com.example.zwierzaki;
 import java.util.Date;
 
 public class Wizyta {
-    private Date date;
+    private String date;
     private String typ;
     private String numer_metryki;
     private String id;
 
-    public Wizyta(Date date, String typ, String numer_metryki,String Id) {
+    public Wizyta(String date, String typ, String numer_metryki,String Id) {
         this.date = date;
         this.typ = typ;
         this.numer_metryki = numer_metryki;
         this.id=Id;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

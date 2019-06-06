@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Szczepienie {
     private String uid;
-    private Date date;
+    private String date;
     private String numer_metryki;
     private boolean wscieklizna;
     private boolean parwowiroza;
@@ -23,7 +23,7 @@ public class Szczepienie {
         typ="Szczepienie";
     }
 
-    public Szczepienie(String uid, Date date, boolean wscieklizna, boolean parwowiroza, boolean nosowka, boolean leptospiroza, boolean rubarth, String inne,String nrMetr,String type) {
+    public Szczepienie(String uid, String date, boolean wscieklizna, boolean parwowiroza, boolean nosowka, boolean leptospiroza, boolean rubarth, String inne,String nrMetr,String type) {
         this.uid = uid;
         this.date = date;
         this.wscieklizna = wscieklizna;
@@ -44,11 +44,11 @@ public class Szczepienie {
         this.uid = uid;
     }
 
-    public Date getdate() {
+    public String getdate() {
         return date;
     }
 
-    public void setdate(Date date) {
+    public void setdate(String date) {
         this.date = date;
     }
 

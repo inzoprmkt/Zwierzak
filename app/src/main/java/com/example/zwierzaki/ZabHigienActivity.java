@@ -48,9 +48,9 @@ public class ZabHigienActivity extends AppCompatActivity {
                 @RequiresApi(api = Build.VERSION_CODES.O)
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    String string = documentSnapshot.get("date").toString();
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
-                    LocalDate date = LocalDate.parse(string, formatter);
+                    String date = documentSnapshot.get("date").toString();
+                   // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+                   // LocalDate date = LocalDate.parse(string, formatter);
 
                     String tekstpoczatkowy = "W dniu ";           //+date.toString() +"\nzostały wykonane następujące \nzabiegi higieniczne:";
                     TextView t = new TextView(ZabHigienActivity.this);

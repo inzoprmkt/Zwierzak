@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
+
 import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
 import java.util.Date;
@@ -40,10 +40,10 @@ public class Wizyta_Info_Adapter extends RecyclerView.Adapter<Wizyta_Info_Adapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         String string = mNotes.get(position).getDate().toString();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
-        LocalDate date = LocalDate.parse(string, formatter);
+        /*DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+        LocalDate date = LocalDate.parse(string, formatter);*/
        // Date date1 = Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        holder.timestamp.setText(date.toString());
+        holder.timestamp.setText(string.toString());
         holder.typ.setText(mNotes.get(position).getTyp());
     }
 

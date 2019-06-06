@@ -197,7 +197,7 @@ public class wizRodz extends AppCompatActivity {
             Toast.makeText(wizRodz.this, piesnr, Toast.LENGTH_SHORT).show();
             LayoutInflater inflater = LayoutInflater.from(wizRodz.this);
             String strData = textKalendarz.getText().toString();
-            SimpleDateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy");
+            /*SimpleDateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy");
             Date date = null;
             try {
                 date = formatter1.parse(strData);
@@ -205,7 +205,8 @@ public class wizRodz extends AppCompatActivity {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            final Date data = date;
+            final Date data = date;*/
+            final String data=strData;
             Toast.makeText(this, data.toString(), Toast.LENGTH_SHORT).show();
             for (int i = 0; i < mUserItems.size(); i++) {
                 switch (listItems[mUserItems.get(i)]) {
@@ -233,7 +234,7 @@ public class wizRodz extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 Szczepienie szczepienie = new Szczepienie();
                                 szczepienie.setNumer_metryki(piesnr);
-                                szczepienie.setdate(data);
+                                szczepienie.setdate(data.toString());
                                 szczepienie.setUid(currentUI);
                                 for (int i = 0; i < szczepUserItem.size(); i++) {
                                     if (checkedSzczep[szczepUserItem.get(i)]) {
@@ -282,7 +283,7 @@ public class wizRodz extends AppCompatActivity {
                     case "Wszczepienie chipa":
                         Chip chip = new Chip();
                         chip.setNumer_metryki(piesnr);
-                        chip.setdate(data);
+                        chip.setdate(data.toString());
                         chip.setUid(currentUI);
                         db.collection("Wizyta").add(chip).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                             @Override
@@ -316,7 +317,7 @@ public class wizRodz extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 Badanie badaniee = new Badanie();
                                 badaniee.setNumer_metryki(piesnr);
-                                badaniee.setdate(data);
+                                badaniee.setdate(data.toString());
                                 badaniee.setUid(currentUI);
                                 for (int i = 0; i < badUserItem.size(); i++) {
                                     if (checkedBad[badUserItem.get(i)]) {
@@ -388,7 +389,7 @@ public class wizRodz extends AppCompatActivity {
                                 if (wantToCloseDialog) {
                                     Zabieg zabieg = new Zabieg();
                                     zabieg.setNumer_metryki(piesnr);
-                                    zabieg.setDate(data);
+                                    zabieg.setDate(data.toString());
                                     zabieg.setUid(currentUI);
                                     zabieg.setOpis(subEditTextZab.getText().toString());
                                     db.collection("Wizyta").add(zabieg).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -429,7 +430,7 @@ public class wizRodz extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 ZabHigien zabHigien = new ZabHigien();
                                 zabHigien.setNumer_metryki(piesnr);
-                                zabHigien.setdate(data);
+                                zabHigien.setdate(data.toString());
                                 zabHigien.setUid(currentUI);
                                 for (int i = 0; i < higienUserItem.size(); i++) {
                                     if (checkedHigien[higienUserItem.get(i)]) {

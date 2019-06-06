@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class ZabHigien {
     private String uid;
-    private Date date;
+    private String date;
     private boolean c_zebow;
     private boolean kleszcz;
     private boolean c_uszu;
@@ -23,7 +23,7 @@ public class ZabHigien {
         usuw_kamienia=false;
     }
 
-    public ZabHigien(String uidzh, Date date, boolean c_zebow, boolean kleszcz, boolean c_uszu, boolean strzyzenie, boolean usuw_kamienia, String inne,String nrmetr,String type) {
+    public ZabHigien(String uidzh, String date, boolean c_zebow, boolean kleszcz, boolean c_uszu, boolean strzyzenie, boolean usuw_kamienia, String inne,String nrmetr,String type) {
         this.uid = uidzh;
         this.date = date;
         this.c_zebow = c_zebow;
@@ -44,11 +44,11 @@ public class ZabHigien {
         this.uid = uid;
     }
 
-    public Date getdate() {
+    public String getdate() {
         return date;
     }
 
-    public void setdate(Date date) {
+    public void setdate(String date) {
         this.date = date;
     }
 

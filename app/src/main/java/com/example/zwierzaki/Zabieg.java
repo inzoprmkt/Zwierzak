@@ -6,14 +6,14 @@ public class Zabieg {
     private String Opis;
     private String numer_metryki;
     private String uid;
-    private Date date;
+    private String date;
     private String typ;
 
     public Zabieg() {
         this.typ="Zabieg";
     }
 
-    public Zabieg( String opis, Date datez,String uidy,String nrmerr,String typez) {
+    public Zabieg( String opis, String datez,String uidy,String nrmerr,String typez) {
         this.numer_metryki=nrmerr;
         this.uid=uid;
         this.Opis = opis;
@@ -30,11 +30,11 @@ public class Zabieg {
         Opis = opis;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

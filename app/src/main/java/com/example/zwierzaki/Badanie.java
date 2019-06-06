@@ -5,7 +5,7 @@ import java.util.Date;
 public class Badanie {
     private String uid;
     private String numer_metryki;
-    private Date date;
+    private String date;
     private boolean Morfologia;
     private boolean krew;
     private boolean mocz;
@@ -28,7 +28,7 @@ public class Badanie {
 
     }
 
-    public Badanie(String uid, Date date, boolean morfologia, boolean krew, boolean mocz, boolean biochem, boolean RTG, boolean EKG, boolean USG, String inne,String nrmetr,String type) {
+    public Badanie(String uid, String date, boolean morfologia, boolean krew, boolean mocz, boolean biochem, boolean RTG, boolean EKG, boolean USG, String inne,String nrmetr,String type) {
         this.uid = uid;
         this.date = date;
         Morfologia = morfologia;
@@ -51,11 +51,11 @@ public class Badanie {
         this.uid = uid;
     }
 
-    public Date getdate() {
+    public String getdate() {
         return date;
     }
 
-    public void setdate(Date date) {
+    public void setdate(String date) {
         this.date = date;
     }
 
