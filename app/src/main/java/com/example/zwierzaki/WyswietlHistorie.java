@@ -111,26 +111,31 @@ public class WyswietlHistorie  extends AppCompatActivity implements Wizyta_Info_
         switch (wizyt.getTyp())
         {
             case"Zabieg":
+                finish();
                 Intent intent = new Intent(this, ZabiegActivity.class);
                 intent.putExtra("selected_wizyta", wizyt.getId());
                 startActivity(intent);
             break;
             case"Chip":
+                finish();
                 Intent intent1 = new Intent(this, ChipActivity.class);
                 intent1.putExtra("selected_wizyta", wizyt.getId());
                 startActivity(intent1);
             break;
             case"Zabieg Higieniczny":
+                finish();
                 Intent intent2 = new Intent(this, ZabHigienActivity.class);
                 intent2.putExtra("selected_wizyta", wizyt.getId());
                 startActivity(intent2);
             break;
             case"Szczepienie":
+                finish();
                 Intent  intent3 = new Intent(this, SzczepienieActivity.class);
                 intent3.putExtra("selected_wizyta", wizyt.getId());
                 startActivity(intent3);
             break;
             case"Badanie":
+                finish();
                 Intent  intent4 = new Intent(this, BadanieActivity.class);
                 intent4.putExtra("selected_wizyta", wizyt.getId());
                 startActivity(intent4);

@@ -89,10 +89,10 @@ public class AddAnimal extends AppCompatActivity {
         currentUI=currentUser.getUid();
         //editTextDatUr = findViewById(R.id.editText_data_urodzenia);
         SpinnerPlec = findViewById(R.id.spinner_plec);
+        editTextImieZwierzecia = findViewById(R.id.editText_imie_zwierze);
         editTextNrMetryki = findViewById(R.id.editText_numer_metryki);
         editTextNrMetrykiMatki = findViewById(R.id.editText_metryka_matki);
         editTextNrMetrykiOjca = findViewById(R.id.editText_metryka_ojca);
-        editTextImieZwierzecia = findViewById(R.id.editText_imie_zwierze);
         textViewBlad=findViewById(R.id.TextViewBlad);
         btnAdd = findViewById(R.id.buttonDodaj_zwierze);
         btnKalendarz = findViewById(R.id.buttonKalendarz);
@@ -228,29 +228,35 @@ public class AddAnimal extends AppCompatActivity {
             }*/
         String Plec = SpinnerPlec.getSelectedItem().toString();
         final String NrMetryki = editTextNrMetryki.getText().toString();
+        String toscik="";
         if (!checkMetryka(NrMetryki)) {
             czy_wszystko_ok = false;
             textViewBlad.setVisibility(View.VISIBLE);
-            Toast.makeText(AddAnimal.this, "nieprawidlowe imie zwierzecia!", Toast.LENGTH_SHORT).show();
+            toscik+="Nieprawidlowe imie zwierzecia!\n";
         }
         String NrMetrykiMatki = editTextNrMetrykiMatki.getText().toString();
         if (!checkMetryka(NrMetrykiMatki)) {
             czy_wszystko_ok = false;
             textViewBlad.setVisibility(View.VISIBLE);
-            Toast.makeText(AddAnimal.this, "nieprawidlowy numer metryki matki!", Toast.LENGTH_SHORT).show();
+            toscik+="Nieprawidlowy numer metryki matki!\n";
         }
         String NrMetrykiOjca = editTextNrMetrykiOjca.getText().toString();
         if (!checkMetryka(NrMetrykiOjca)) {
             czy_wszystko_ok = false;
             textViewBlad.setVisibility(View.VISIBLE);
-            Toast.makeText(AddAnimal.this, "nieprawidlowy numer metryki ojca!", Toast.LENGTH_SHORT).show();
+            toscik+="Nieprawidlowy numer metryki ojca!\n";
         }
         String ImieZwierzecia = editTextImieZwierzecia.getText().toString();
         if (!checkImie(ImieZwierzecia)) {
             czy_wszystko_ok = false;
             textViewBlad.setVisibility(View.VISIBLE);
-            Toast.makeText(AddAnimal.this, "nieprawidlowe imie!", Toast.LENGTH_SHORT).show();
+            toscik+="Nieprawidlowe imie!\n";
         }
+
+        toscik=toscik.substring(0,toscik.length()-1);
+        Toast.makeText(AddAnimal.this, toscik, Toast.LENGTH_SHORT).show();
+        toscik="";
+
         if (czy_wszystko_ok == true) {
             uploadImage(currentUI, NrMetryki);
             final Zwierze zwierzak=new Zwierze(data,Plec,NrMetryki,NrMetrykiMatki,NrMetrykiOjca,ImieZwierzecia,currentUI,"Zdjecie" + NrMetryki);
@@ -279,7 +285,7 @@ public class AddAnimal extends AppCompatActivity {
         }
         else
         {
-            Toast.makeText(AddAnimal.this, "nieprawidlowe dane!", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(AddAnimal.this, "nieprawidlowe dane!", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -309,6 +315,10 @@ public class AddAnimal extends AppCompatActivity {
             if (!imie.matches("[A-Za-z]*")) {
                 checkFormat = false;
             }
+        }
+        else
+        {
+            checkFormat = false;
         }
         return checkFormat;
     }

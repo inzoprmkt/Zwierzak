@@ -27,6 +27,7 @@ public class ZabiegActivity extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     Button btnUsun;
     String id;
+    String nrmetr;
     private CollectionReference kolekcja;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public class ZabiegActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                     String date = documentSnapshot.get("date").toString();
+                    nrmetr=documentSnapshot.get("numer_metryki").toString();
                    // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
                     //LocalDate date = LocalDate.parse(string, formatter);
                     data.setText(date.toString());
@@ -60,7 +62,7 @@ public class ZabiegActivity extends AppCompatActivity {
                         Toast.makeText(ZabiegActivity.this, "Usunięto pomyślnie", Toast.LENGTH_SHORT).show();
                         finish();
                         Intent intent=new Intent(ZabiegActivity.this,WyswietlHistorie.class);
-                        intent.putExtra("selected_zwierze",id);
+                        intent.putExtra("selected_zwierze",nrmetr);
                         startActivity(intent);
                     }
                 });

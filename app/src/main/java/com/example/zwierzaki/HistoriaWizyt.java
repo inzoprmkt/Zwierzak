@@ -64,7 +64,6 @@ public class HistoriaWizyt extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (spiner.getSelectedItem() != null) {
-
                     Intent i = new Intent(HistoriaWizyt.this, WyswietlHistorie.class);
                     i.putExtra("selected_spinner", spiner.getSelectedItem().toString());
                     startActivity(i);

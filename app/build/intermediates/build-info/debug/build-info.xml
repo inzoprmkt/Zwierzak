@@ -6,9 +6,9 @@
     density="xhdpi"
     format="10"
     plugin-version="3.3.2"
-    timestamp="1559833949308"
+    timestamp="1559838270291"
     token="2373238890907755160"
-    verifier="NO_CHANGES" >
+    verifier="COMPATIBLE" >
 
     <task
         name="javac"
@@ -23,66 +23,126 @@
         name="verifier"
         duration="0" />
 
+    <artifact
+        location="C:\Users\HP\AndroidStudioProjects\Zwierzak21\app\build\intermediates\instant-run-resources\resources-debug.ir.ap_"
+        type="RESOURCES" />
+
     <build
         build-mode="FULL"
-        timestamp="1559833503845"
-        verifier="FULL_BUILD_REQUESTED" >
+        timestamp="1559835718114"
+        verifier="MANIFEST_FILE_CHANGE" >
+        <artifact
+            location="C:\Users\HP\AndroidStudioProjects\Zwierzak21\app\build\intermediates\split-apk\debug\dep\dependencies.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\HP\AndroidStudioProjects\Zwierzak21\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\HP\AndroidStudioProjects\Zwierzak21\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\HP\AndroidStudioProjects\Zwierzak21\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\HP\AndroidStudioProjects\Zwierzak21\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\HP\AndroidStudioProjects\Zwierzak21\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\HP\AndroidStudioProjects\Zwierzak21\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\HP\AndroidStudioProjects\Zwierzak21\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\HP\AndroidStudioProjects\Zwierzak21\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\HP\AndroidStudioProjects\Zwierzak21\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\HP\AndroidStudioProjects\Zwierzak21\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\HP\AndroidStudioProjects\Zwierzak21\app\build\intermediates\instant-run-apk\debug\app-debug.apk"
+            type="SPLIT_MAIN" />
+    </build>
+    <build
+        build-mode="COLD"
+        ir-eligibility="COMPATIBLE"
+        timestamp="1559836570980"
+        verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="C:\Users\HP\AndroidStudioProjects\Zwierzak21\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
             type="SPLIT" />
         <artifact
             location="C:\Users\HP\AndroidStudioProjects\Zwierzak21\app\build\intermediates\instant-run-apk\debug\app-debug.apk"
             type="SPLIT_MAIN" />
-        <artifact
-            location="C:\Users\HP\AndroidStudioProjects\Zwierzak21\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\Users\HP\AndroidStudioProjects\Zwierzak21\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\Users\HP\AndroidStudioProjects\Zwierzak21\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\Users\HP\AndroidStudioProjects\Zwierzak21\app\build\intermediates\split-apk\debug\dep\dependencies.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\Users\HP\AndroidStudioProjects\Zwierzak21\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\Users\HP\AndroidStudioProjects\Zwierzak21\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\Users\HP\AndroidStudioProjects\Zwierzak21\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\Users\HP\AndroidStudioProjects\Zwierzak21\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\Users\HP\AndroidStudioProjects\Zwierzak21\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\Users\HP\AndroidStudioProjects\Zwierzak21\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
-            type="SPLIT" />
     </build>
     <build
         build-mode="HOT_WARM"
-        timestamp="1559833680387"
+        timestamp="1559836686925"
         verifier="COMPATIBLE" >
         <artifact
-            location="C:\Users\HP\AndroidStudioProjects\Zwierzak21\app\build\intermediates\builds\debug\1559833680387\classes.dex"
+            location="C:\Users\HP\AndroidStudioProjects\Zwierzak21\app\build\intermediates\builds\debug\1559836686925\classes.dex"
             type="RELOAD_DEX" />
     </build>
     <build
         build-mode="HOT_WARM"
-        timestamp="1559833910461"
+        timestamp="1559836800293"
+        verifier="COMPATIBLE" >
+        <artifact
+            location="C:\Users\HP\AndroidStudioProjects\Zwierzak21\app\build\intermediates\builds\debug\1559836800293\classes.dex"
+            type="RELOAD_DEX" />
+    </build>
+    <build
+        build-mode="HOT_WARM"
+        timestamp="1559836983088"
+        verifier="COMPATIBLE" >
+        <artifact
+            location="C:\Users\HP\AndroidStudioProjects\Zwierzak21\app\build\intermediates\builds\debug\1559836983088\classes.dex"
+            type="RELOAD_DEX" />
+    </build>
+    <build
+        build-mode="HOT_WARM"
+        timestamp="1559836999139"
+        verifier="COMPATIBLE" >
+        <artifact
+            location="C:\Users\HP\AndroidStudioProjects\Zwierzak21\app\build\intermediates\builds\debug\1559836999139\classes.dex"
+            type="RELOAD_DEX" />
+    </build>
+    <build
+        build-mode="HOT_WARM"
+        timestamp="1559837198748"
+        verifier="COMPATIBLE" >
+        <artifact
+            location="C:\Users\HP\AndroidStudioProjects\Zwierzak21\app\build\intermediates\builds\debug\1559837198748\classes.dex"
+            type="RELOAD_DEX" />
+    </build>
+    <build
+        build-mode="HOT_WARM"
+        timestamp="1559837249900"
+        verifier="COMPATIBLE" >
+        <artifact
+            location="C:\Users\HP\AndroidStudioProjects\Zwierzak21\app\build\intermediates\builds\debug\1559837249900\classes.dex"
+            type="RELOAD_DEX" />
+    </build>
+    <build
+        build-mode="HOT_WARM"
+        timestamp="1559837487295"
+        verifier="COMPATIBLE" >
+        <artifact
+            location="C:\Users\HP\AndroidStudioProjects\Zwierzak21\app\build\intermediates\builds\debug\1559837487295\classes.dex"
+            type="RELOAD_DEX" />
+    </build>
+    <build
+        build-mode="HOT_WARM"
+        timestamp="1559838270291"
         verifier="COMPATIBLE" >
         <artifact
             location="C:\Users\HP\AndroidStudioProjects\Zwierzak21\app\build\intermediates\instant-run-resources\resources-debug.ir.ap_"
             type="RESOURCES" />
     </build>
-    <build
-        build-mode="HOT_WARM"
-        timestamp="1559833949308"
-        verifier="NO_CHANGES" />
 
 </instant-run>

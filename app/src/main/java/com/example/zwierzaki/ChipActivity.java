@@ -24,6 +24,7 @@ public class ChipActivity extends AppCompatActivity {
     TextView data;
     Button btnUsun;
     String id;
+    String nrmetr;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     private CollectionReference kolekcja;
@@ -42,6 +43,7 @@ public class ChipActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                     String date = documentSnapshot.get("date").toString();
+                    nrmetr=documentSnapshot.get("numer_metryki").toString();
                     //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
                    // LocalDate date = LocalDate.parse(string, formatter);
                     data.setText(date.toString());
@@ -59,7 +61,7 @@ public class ChipActivity extends AppCompatActivity {
                         Toast.makeText(ChipActivity.this, "Usunięto pomyślnie", Toast.LENGTH_SHORT).show();
                         finish();
                         Intent intent=new Intent(ChipActivity.this,WyswietlHistorie.class);
-                        intent.putExtra("selected_zwierze",id);
+                        intent.putExtra("selected_zwierze",nrmetr);
                         startActivity(intent);
                     }
                 });

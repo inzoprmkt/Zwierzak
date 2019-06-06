@@ -22,22 +22,70 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme" >
-        <activity android:name="com.example.zwierzaki.BadanieActivity" />
-        <activity android:name="com.example.zwierzaki.SzczepienieActivity" />
-        <activity android:name="com.example.zwierzaki.ZabHigienActivity" />
-        <activity android:name="com.example.zwierzaki.ChipActivity" />
-        <activity android:name="com.example.zwierzaki.ZabiegActivity" />
-        <activity android:name="com.example.zwierzaki.WyswietlHistorie" />
-        <activity android:name="com.example.zwierzaki.EdytujActivity" />
-        <activity android:name="com.example.zwierzaki.ZdjeciaActivity" />
-        <activity android:name="com.example.zwierzaki.HistoriaWizyt" />
-        <activity android:name="com.example.zwierzaki.ZwierzeActivity" />
-        <activity android:name="com.example.zwierzaki.wizRodz" />
-        <activity android:name="com.example.zwierzaki.WyswietlZwierzaki" />
-        <activity android:name="com.example.zwierzaki.AddAnimal" />
-        <activity android:name="com.example.zwierzaki.UserProfileActivity" />
-        <activity android:name="com.example.zwierzaki.LoginActivity" />
-        <activity android:name="com.example.zwierzaki.MainActivity" >
+        <activity
+            android:name="com.example.zwierzaki.BadanieActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.zwierzaki.SzczepienieActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.zwierzaki.ZabHigienActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.zwierzaki.ChipActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.zwierzaki.ZabiegActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.zwierzaki.WyswietlHistorie"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.zwierzaki.EdytujActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.zwierzaki.ZdjeciaActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.zwierzaki.HistoriaWizyt"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.zwierzaki.ZwierzeActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.zwierzaki.wizRodz"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.zwierzaki.WyswietlZwierzaki"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.zwierzaki.AddAnimal"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.zwierzaki.UserProfileActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.zwierzaki.LoginActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.zwierzaki.MainActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

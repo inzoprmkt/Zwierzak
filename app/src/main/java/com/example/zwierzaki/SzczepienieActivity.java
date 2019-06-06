@@ -31,6 +31,7 @@ public class SzczepienieActivity extends AppCompatActivity {
     private TableLayout layout;
     Button btnUsun;
     String id;
+    String nrmetr;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +50,7 @@ public class SzczepienieActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                     String date = documentSnapshot.get("date").toString();
+                    nrmetr=documentSnapshot.get("numer_metryki").toString();
                    // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
                     //LocalDate date = LocalDate.parse(string, formatter);
 
@@ -145,7 +147,7 @@ public class SzczepienieActivity extends AppCompatActivity {
                         Toast.makeText(SzczepienieActivity.this, "Usunięto pomyślnie", Toast.LENGTH_SHORT).show();
                         finish();
                         Intent intent=new Intent(SzczepienieActivity.this,WyswietlHistorie.class);
-                        intent.putExtra("selected_zwierze",id);
+                        intent.putExtra("selected_zwierze",nrmetr);
                         startActivity(intent);
                     }
                 });

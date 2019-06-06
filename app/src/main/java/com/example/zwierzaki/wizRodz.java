@@ -194,7 +194,7 @@ public class wizRodz extends AppCompatActivity {
             String tekst = spinner.getSelectedItem().toString();
             String[] czesci = tekst.split(" ");
             final String piesnr = czesci[czesci.length - 1];
-            Toast.makeText(wizRodz.this, piesnr, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(wizRodz.this, piesnr, Toast.LENGTH_SHORT).show();
             LayoutInflater inflater = LayoutInflater.from(wizRodz.this);
             String strData = textKalendarz.getText().toString();
             /*SimpleDateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy");
@@ -207,7 +207,7 @@ public class wizRodz extends AppCompatActivity {
             }
             final Date data = date;*/
             final String data=strData;
-            Toast.makeText(this, data.toString(), Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, data.toString(), Toast.LENGTH_SHORT).show();
             for (int i = 0; i < mUserItems.size(); i++) {
                 switch (listItems[mUserItems.get(i)]) {
                     case "Szczepienie":

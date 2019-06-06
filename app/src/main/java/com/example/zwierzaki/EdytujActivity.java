@@ -197,6 +197,9 @@ public class EdytujActivity extends AppCompatActivity {
                                                 });
 
                                     }
+
+                                    Intent intent=new Intent(EdytujActivity.this,WyswietlZwierzaki.class);
+                                    startActivity(intent);
                             } else {
                                 Toast.makeText(EdytujActivity.this, "Wystąpił błąd...", Toast.LENGTH_SHORT).show();
                                 //Log.d(TAG, "Failed with: ", task.getException());
@@ -257,6 +260,10 @@ public class EdytujActivity extends AppCompatActivity {
             if (!imie.matches("[A-Za-z]*")) {
                 checkFormat = false;
             }
+        }
+        else
+        {
+            checkFormat = false;
         }
         return checkFormat;
     }
