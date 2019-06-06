@@ -1,5 +1,6 @@
 package com.example.zwierzaki;
 
+import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
@@ -58,6 +59,9 @@ public class ZabiegActivity extends AppCompatActivity {
                     public void onSuccess(Void aVoid) {
                         Toast.makeText(ZabiegActivity.this, "Usunięto pomyślnie", Toast.LENGTH_SHORT).show();
                         finish();
+                        Intent intent=new Intent(ZabiegActivity.this,WyswietlHistorie.class);
+                        intent.putExtra("selected_zwierze",id);
+                        startActivity(intent);
                     }
                 });
             }

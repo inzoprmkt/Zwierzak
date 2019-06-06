@@ -30,6 +30,7 @@ public class ZwierzeActivity extends AppCompatActivity {
     ImageView tZdjecie;
     Button tEdytuj;
     Button tWizyty;
+    Button thistoria;
     String tnrMetryki;
 
     @Override
@@ -41,7 +42,7 @@ public class ZwierzeActivity extends AppCompatActivity {
             Zwierze zwierze = getIntent().getParcelableExtra("selected_zwierze");
             tNrMetryki = (TextView)findViewById(R.id.textNrMetryki);
             tNrMetryki.setText(zwierze.getNrMetryki());
-
+            thistoria=findViewById(R.id.historia);
             tImieZwierzecia = (TextView)findViewById(R.id.textImie);
             tImieZwierzecia.setText(zwierze.getImieZwierzecia());
 
@@ -91,18 +92,19 @@ public class ZwierzeActivity extends AppCompatActivity {
             tnrMetryki = zwierze.getNrMetryki();
         }
 
-        tZdjecie.setOnClickListener(new View.OnClickListener() {
+       /* tZdjecie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { //int position) {
                 Intent intent = new Intent(ZwierzeActivity.this, ZdjeciaActivity.class);
                 intent.putExtra("selected_zwierze", tnrMetryki);
                 startActivity(intent);
             }
-        });
+        });*/
         tEdytuj.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //NOWE WIDOKI !!! NOWE WIDOKI !!!NOWE WIDOKI !!!NOWE WIDOKI !!!NOWE WIDOKI !!!NOWE WIDOKI !!!NOWE WIDOKI !!!
+                finish();
                 Intent intent = new Intent(ZwierzeActivity.this, EdytujActivity.class);
                 intent.putExtra("selected_zwierze", tnrMetryki);
                 startActivity(intent);
@@ -112,7 +114,18 @@ public class ZwierzeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //NOWE WIDOKI !!! NOWE WIDOKI !!!NOWE WIDOKI !!!NOWE WIDOKI !!!NOWE WIDOKI !!!NOWE WIDOKI !!!NOWE WIDOKI !!!
+
                 Intent intent = new Intent(ZwierzeActivity.this,wizRodz.class);
+                intent.putExtra("selected_zwierze", tnrMetryki);
+                startActivity(intent);
+            }
+        });
+        thistoria.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //NOWE WIDOKI !!! NOWE WIDOKI !!!NOWE WIDOKI !!!NOWE WIDOKI !!!NOWE WIDOKI !!!NOWE WIDOKI !!!NOWE WIDOKI !!!
+
+                Intent intent = new Intent(ZwierzeActivity.this,WyswietlHistorie.class);
                 intent.putExtra("selected_zwierze", tnrMetryki);
                 startActivity(intent);
             }

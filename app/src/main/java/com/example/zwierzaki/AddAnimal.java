@@ -126,7 +126,12 @@ public class AddAnimal extends AppCompatActivity {
         //Initialize Views
         btnChoose = (Button) findViewById(R.id.btnChoose);
         imageView = (ImageView) findViewById(R.id.imageView);
-
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chooseImage();
+            }
+        });
         btnChoose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -226,21 +231,25 @@ public class AddAnimal extends AppCompatActivity {
         if (!checkMetryka(NrMetryki)) {
             czy_wszystko_ok = false;
             textViewBlad.setVisibility(View.VISIBLE);
+            Toast.makeText(AddAnimal.this, "nieprawidlowe imie zwierzecia!", Toast.LENGTH_SHORT).show();
         }
         String NrMetrykiMatki = editTextNrMetrykiMatki.getText().toString();
         if (!checkMetryka(NrMetrykiMatki)) {
             czy_wszystko_ok = false;
             textViewBlad.setVisibility(View.VISIBLE);
+            Toast.makeText(AddAnimal.this, "nieprawidlowy numer metryki matki!", Toast.LENGTH_SHORT).show();
         }
         String NrMetrykiOjca = editTextNrMetrykiOjca.getText().toString();
         if (!checkMetryka(NrMetrykiOjca)) {
             czy_wszystko_ok = false;
             textViewBlad.setVisibility(View.VISIBLE);
+            Toast.makeText(AddAnimal.this, "nieprawidlowy numer metryki ojca!", Toast.LENGTH_SHORT).show();
         }
         String ImieZwierzecia = editTextImieZwierzecia.getText().toString();
         if (!checkImie(ImieZwierzecia)) {
             czy_wszystko_ok = false;
             textViewBlad.setVisibility(View.VISIBLE);
+            Toast.makeText(AddAnimal.this, "nieprawidlowe imie!", Toast.LENGTH_SHORT).show();
         }
         if (czy_wszystko_ok == true) {
             uploadImage(currentUI, NrMetryki);
@@ -297,7 +306,7 @@ public class AddAnimal extends AppCompatActivity {
     public boolean checkImie(String imie) {
         boolean checkFormat = true;
         if (!imie.isEmpty()) {
-            if (!imie.matches("[A-Z][a-z]*")) {
+            if (!imie.matches("[A-Za-z]*")) {
                 checkFormat = false;
             }
         }

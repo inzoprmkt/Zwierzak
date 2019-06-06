@@ -94,6 +94,7 @@ public class WyswietlZwierzaki extends AppCompatActivity implements Zwierze_Info
     public void onZwierzeClick(int position) {
         Log.d(TAG, "onZwierzeClick: clicked." + position);
         //mZwierze.get(position);
+        finish();
         Intent intent = new Intent(this, ZwierzeActivity.class);
         intent.putExtra("selected_zwierze", mZwierze.get(position));
         startActivity(intent);

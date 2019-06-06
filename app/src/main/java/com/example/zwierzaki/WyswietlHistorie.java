@@ -49,10 +49,32 @@ public class WyswietlHistorie  extends AppCompatActivity implements Wizyta_Info_
             String ciag = getIntent().getStringExtra("selected_spinner");
             String[] parts = ciag.split(" ");
             String nrMetr = parts[parts.length - 1];
+            //Toast.makeText(WyswietlHistorie.this, "|"+nrMetr+"|", Toast.LENGTH_SHORT).show();
+//.orderBy("date", Query.Direction.DESCENDING)
+            listaWizyt.whereEqualTo("numer_metryki", nrMetr).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                @RequiresApi(api = Build.VERSION_CODES.O)
+                @Override
+                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                    if (!queryDocumentSnapshots.isEmpty()) {
+                        initRecyclerView();
+                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                            String string = documentSnapshot.get("date").toString();
+                           /*DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE MMM dd HH:mm:ss z yyyy",Locale.ENGLISH);
+                            LocalDate date = LocalDate.parse(string, formatter);
+                            Date date1 = Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());*/
+                            Wizyta nowa = new Wizyta(string, documentSnapshot.get("typ").toString(), documentSnapshot.get("numer_metryki").toString(),documentSnapshot.getId());
+                            mZwierze.add(nowa);
+                        }
+                    }
+                }
+
+            });
+        }
+        if (getIntent().hasExtra("selected_zwierze")) {
+            String nrMetr = getIntent().getStringExtra("selected_zwierze");
 
             //Toast.makeText(WyswietlHistorie.this, "|"+nrMetr+"|", Toast.LENGTH_SHORT).show();
 //.orderBy("date", Query.Direction.DESCENDING)
-
             listaWizyt.whereEqualTo("numer_metryki", nrMetr).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                 @RequiresApi(api = Build.VERSION_CODES.O)
                 @Override

@@ -22,7 +22,7 @@
     <EditText
         android:id="@+id/editText_numer_metryki"
         android:layout_width="401dp"
-        android:layout_height="37dp"
+        android:layout_height="45dp"
         android:ems="10"
         android:hint="Numer metryki"
         android:inputType="text"
@@ -34,7 +34,7 @@
     <EditText
         android:id="@+id/editText_metryka_ojca"
         android:layout_width="400dp"
-        android:layout_height="40dp"
+        android:layout_height="45dp"
         android:ems="10"
         android:hint="Numer metryki ojca"
         android:inputType="text"
@@ -46,7 +46,7 @@
     <EditText
         android:id="@+id/editText_metryka_matki"
         android:layout_width="400dp"
-        android:layout_height="38dp"
+        android:layout_height="45dp"
         android:ems="10"
         android:hint="Numer metryki matki"
         android:inputType="text"
@@ -58,7 +58,7 @@
     <EditText
         android:id="@+id/editText_imie_zwierze"
         android:layout_width="401dp"
-        android:layout_height="39dp"
+        android:layout_height="45dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Imie zwierzęcia"
@@ -139,7 +139,7 @@
         android:layout_width="146dp"
         android:layout_height="45dp"
         android:layout_marginStart="132dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="133dp"
         android:text="Wybierz zdjęcie"
         app:layout_constraintEnd_toEndOf="parent"

@@ -164,6 +164,7 @@ public class EdytujActivity extends AppCompatActivity {
                                     {
                                      //   Toast.makeText(EdytujActivity.this,"hdfuktvjfrfhjxcvfb", Toast.LENGTH_SHORT).show();
                                         //EDYTUJEMY
+                                        Toast.makeText(EdytujActivity.this, "Edytowano pomyślnie!", Toast.LENGTH_SHORT).show();
 
                                         Zwierz.update("nrMetrykiMatki",tNrMetrykiMatki.getText().toString());
                                         Zwierz.update("nrMetrykiOjca",tNrMetrykiOjca.getText().toString());
@@ -183,7 +184,7 @@ public class EdytujActivity extends AppCompatActivity {
                                                 @Override
                                                 public void onSuccess(Void aVoid) {
                                                     //tutaj edycja
-                                                    Toast.makeText(EdytujActivity.this, "Dodano pomyślnie!", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(EdytujActivity.this, "Edytowano pomyślnie!", Toast.LENGTH_SHORT).show();
                                                 }
                                             });
                                         db.collection("Zwierzeta").document(idZwierzaka)
@@ -197,6 +198,7 @@ public class EdytujActivity extends AppCompatActivity {
 
                                     }
                             } else {
+                                Toast.makeText(EdytujActivity.this, "Wystąpił błąd...", Toast.LENGTH_SHORT).show();
                                 //Log.d(TAG, "Failed with: ", task.getException());
                             }
                         }
@@ -227,6 +229,9 @@ public class EdytujActivity extends AppCompatActivity {
                     public void onSuccess(Void aVoid) {
                          Toast.makeText(EdytujActivity.this, "Document successfully deleted!", Toast.LENGTH_SHORT).show();
                         //Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                        finish();
+                        Intent intent=new Intent(EdytujActivity.this,WyswietlZwierzaki.class);
+                        startActivity(intent);
                     }
                 });
             }
@@ -249,7 +254,7 @@ public class EdytujActivity extends AppCompatActivity {
     public boolean checkImie(String imie) {
         boolean checkFormat = true;
         if (!imie.isEmpty()) {
-            if (!imie.matches("[A-Z][a-z]*")) {
+            if (!imie.matches("[A-Za-z]*")) {
                 checkFormat = false;
             }
         }
