@@ -124,8 +124,8 @@ public class AddAnimal extends AppCompatActivity {
         storageReference = storage.getReference();
 
         //Initialize Views
-        btnChoose = (Button) findViewById(R.id.btnChoose);
-        imageView = (ImageView) findViewById(R.id.imageView);
+        btnChoose =  findViewById(R.id.btnChoose);
+        imageView =  findViewById(R.id.imageView);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -214,7 +214,7 @@ public class AddAnimal extends AppCompatActivity {
         private static final String KEYImieZwierzecia = "ImieZwierzecia";
         private static final String KEYUID = "UIDwlasciciela";*/
 
-    public void Dodaj(View v) throws ParseException {
+    public void Dodaj(View v) {
         boolean czy_wszystko_ok = true;
         final String data = textKalendarz.getText().toString();
         //Date data=new SimpleDateFormat("dd/MM/yyyy").parse(DatUr);
@@ -252,12 +252,15 @@ public class AddAnimal extends AppCompatActivity {
             textViewBlad.setVisibility(View.VISIBLE);
             toscik+="Nieprawidlowe imie!\n";
         }
+        if(toscik.length()>1)
+        {
+            toscik=toscik.substring(0,toscik.length()-1);
+            Toast.makeText(AddAnimal.this, toscik, Toast.LENGTH_SHORT).show();
+            toscik="";
+        }
 
-        toscik=toscik.substring(0,toscik.length()-1);
-        Toast.makeText(AddAnimal.this, toscik, Toast.LENGTH_SHORT).show();
-        toscik="";
 
-        if (czy_wszystko_ok == true) {
+        if (czy_wszystko_ok) {
             uploadImage(currentUI, NrMetryki);
             final Zwierze zwierzak=new Zwierze(data,Plec,NrMetryki,NrMetrykiMatki,NrMetrykiOjca,ImieZwierzecia,currentUI,"Zdjecie" + NrMetryki);
             DocumentReference Zwierz = db.collection("Zwierzeta").document(NrMetryki);

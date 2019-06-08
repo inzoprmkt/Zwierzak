@@ -43,8 +43,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="192dp"
-        android:layout_marginTop="256dp" />
+        android:layout_marginStart="236dp"
+        android:layout_marginTop="326dp" />
 
     <Button
         android:id="@+id/btnOrder"
@@ -52,15 +52,15 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="149dp"
-        android:layout_marginTop="167dp"
+        android:layout_marginStart="158dp"
+        android:layout_marginTop="187dp"
         android:onClick="btnlistaOgolna"
         android:text="Wybierz" />
 
     <Spinner
         android:id="@+id/spinnerZwierzaki"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"

@@ -1,6 +1,7 @@
 package com.example.zwierzaki;
 
 import android.app.DatePickerDialog;
+import android.app.Fragment;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,6 +57,10 @@ public class wizRodz extends AppCompatActivity {
     boolean[] checkedHigien;
     ArrayList<Integer> higienUserItem = new ArrayList<>();
     FirebaseUser currentUser;
+    AlertDialog badOkno;
+    LayoutInflater inflater1;
+    Badanie badaniee;
+    boolean[] czyok;
     private String currentUI;
     private Button btnKalendarz;
     private TextView textKalendarz;
@@ -69,6 +75,7 @@ public class wizRodz extends AppCompatActivity {
     private boolean czy_odwolanie;
     private String zwierzeintent;
     private int i;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,7 +84,7 @@ public class wizRodz extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
         currentUI = currentUser.getUid();
-
+        inflater1 = LayoutInflater.from(wizRodz.this);
         mOrder = findViewById(R.id.btnOrder);
         mItemSelected = findViewById(R.id.tvItemSelected);
         btnKalendarz = findViewById(R.id.buttonKalendarz2);
@@ -120,23 +127,22 @@ public class wizRodz extends AppCompatActivity {
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, subjects);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-        czy_odwolanie=false;
-        if(getIntent().hasExtra("selected_zwierze")) {
+        czy_odwolanie = false;
+        if (getIntent().hasExtra("selected_zwierze")) {
             zwierzeintent = getIntent().getStringExtra("selected_zwierze");
-            czy_odwolanie=true;
+            czy_odwolanie = true;
         }
-        i=0;
+        i = 0;
         db.collection("Zwierzeta").whereEqualTo("uid", currentUI).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for (DocumentSnapshot document : queryDocumentSnapshots) {
-                    if(czy_odwolanie==true)
-                    {
-                        if(document.getString("nrMetryki").toString().equals(zwierzeintent))
-                        {
-                            czy_odwolanie=false;
+                    if (czy_odwolanie) {
+                        if (document.getString("nrMetryki").equals(zwierzeintent)) {
+                            czy_odwolanie = false;
+                        } else {
+                            i++;
                         }
-                        else { i++;}
                     }
                     String wiersz = document.getString("imieZwierzecia") + "   " + document.getString("nrMetryki");
                     subjects.add(wiersz);
@@ -166,14 +172,7 @@ public class wizRodz extends AppCompatActivity {
             mBuilder.setPositiveButton(R.string.ok_label, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int which) {
-                    String item = "";
-                    for (int i = 0; i < mUserItems.size(); i++) {
-                        item = item + listItems[mUserItems.get(i)];
-                        if (i != mUserItems.size() - 1) {
-                            item = item + ", ";
-                        }
-                    }
-                    mItemSelected.setText(item);
+
                     szczep(0);
                 }
             });
@@ -194,22 +193,13 @@ public class wizRodz extends AppCompatActivity {
             String tekst = spinner.getSelectedItem().toString();
             String[] czesci = tekst.split(" ");
             final String piesnr = czesci[czesci.length - 1];
-            //Toast.makeText(wizRodz.this, piesnr, Toast.LENGTH_SHORT).show();
             LayoutInflater inflater = LayoutInflater.from(wizRodz.this);
             String strData = textKalendarz.getText().toString();
-            /*SimpleDateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy");
-            Date date = null;
-            try {
-                date = formatter1.parse(strData);
-
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            final Date data = date;*/
-            final String data=strData;
-           // Toast.makeText(this, data.toString(), Toast.LENGTH_SHORT).show();
+            final String data = strData;
             for (int i = 0; i < mUserItems.size(); i++) {
                 switch (listItems[mUserItems.get(i)]) {
+
+
                     case "Szczepienie":
                         szczepItems = getResources().getStringArray(R.array.szczep_menu);
                         checkedSzczep = new boolean[szczepItems.length];
@@ -234,7 +224,7 @@ public class wizRodz extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 Szczepienie szczepienie = new Szczepienie();
                                 szczepienie.setNumer_metryki(piesnr);
-                                szczepienie.setdate(data.toString());
+                                szczepienie.setdate(data);
                                 szczepienie.setUid(currentUI);
                                 for (int i = 0; i < szczepUserItem.size(); i++) {
                                     if (checkedSzczep[szczepUserItem.get(i)]) {
@@ -255,15 +245,12 @@ public class wizRodz extends AppCompatActivity {
                                                 szczepienie.setRubarth(true);
                                                 break;
                                         }
-                                        //Toast.makeText(wizRodz.this, "Zaznaczono" + szczepItems[i], Toast.LENGTH_SHORT).show();
-
                                     }
                                     if (szczepUserItem.get(i) == 5 && !subEditText.getText().toString().matches("")) {
                                         // Toast.makeText(wizRodz.this, szczepItems[5], Toast.LENGTH_SHORT).show();
                                         szczepienie.setInne(subEditText.getText().toString());
                                     }
                                 }
-
                                 dodaj(szczepienie);
                             }
 
@@ -276,14 +263,15 @@ public class wizRodz extends AppCompatActivity {
                                 });
                             }
                         });
-
                         AlertDialog szczepOkno = szczep.create();
                         szczepOkno.show();
                         break;
+
+
                     case "Wszczepienie chipa":
                         Chip chip = new Chip();
                         chip.setNumer_metryki(piesnr);
-                        chip.setdate(data.toString());
+                        chip.setdate(data);
                         chip.setUid(currentUI);
                         db.collection("Wizyta").add(chip).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                             @Override
@@ -292,13 +280,15 @@ public class wizRodz extends AppCompatActivity {
                             }
                         });
                         break;
+
+
                     case "Badania":
                         badItems = getResources().getStringArray(R.array.badania);
                         checkedBad = new boolean[badItems.length];
                         inflater = LayoutInflater.from(wizRodz.this);
                         View subViewBad = inflater.inflate(R.layout.dialog_layout, null);
                         final EditText subEditText1 = subViewBad.findViewById(R.id.dialogEditText);
-                        AlertDialog.Builder badanie = new AlertDialog.Builder(wizRodz.this);
+                        final AlertDialog.Builder badanie = new AlertDialog.Builder(wizRodz.this);
                         badanie.setTitle("wybierz badania");
                         badanie.setMultiChoiceItems(badItems, checkedBad, new DialogInterface.OnMultiChoiceClickListener() {
                             @Override
@@ -315,55 +305,269 @@ public class wizRodz extends AppCompatActivity {
                         badanie.setPositiveButton("Dodaj", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Badanie badaniee = new Badanie();
+                                badaniee = new Badanie();
                                 badaniee.setNumer_metryki(piesnr);
-                                badaniee.setdate(data.toString());
+                                badaniee.setdate(data);
                                 badaniee.setUid(currentUI);
-                                for (int i = 0; i < badUserItem.size(); i++) {
+                                int i = 0;
+                                czyok = new boolean[9];
+                                for (int j = 0; j < 9; j++) {
+                                    czyok[j] = true;
+                                }
+                                czyok[8]=false;
+                                final String[] taknielista = getResources().getStringArray(R.array.badanieopis);
+                                do {
                                     if (checkedBad[badUserItem.get(i)]) {
                                         switch (badItems[badUserItem.get(i)]) {
                                             case "Morfologia":
+                                                czyok[0] = false;
                                                 badaniee.setMorfologia(true);
+                                                View subViewMorf = inflater1.inflate(R.layout.opis_badania, null);
+                                                final EditText subEditText1 = subViewMorf.findViewById(R.id.opisEditText);
+                                                final AlertDialog.Builder mBuilder = new AlertDialog.Builder(wizRodz.this);
+                                                mBuilder.setTitle("Czy wyniki morfologii są dobre? ");
+                                                mBuilder.setSingleChoiceItems(taknielista, -1, new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                                        if (taknielista[i].equals("Tak")) {
+                                                            badaniee.setMorfologiaczypoprawne(true);
+                                                        } else {
+                                                            badaniee.setMorfologiaczypoprawne(false);
+                                                        }
+                                                    }
+                                                });
+                                                mBuilder.setView(subViewMorf);
+                                                mBuilder.setCancelable(false);
+                                                mBuilder.setPositiveButton(R.string.ok_label, new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialogInterface, int which) {
+                                                        if (!subEditText1.getText().toString().equals("")) {
+                                                            badaniee.setMorfologiaopis(subEditText1.toString());
+                                                        }
+                                                        czyok[0] = true;
+                                                    }
+                                                });
+                                                AlertDialog mDialog = mBuilder.create();
+                                                mDialog.show();
                                                 break;
+
                                             case "Rozmaz krwi":
                                                 badaniee.setKrew(true);
+                                                czyok[1] = false;
+                                                View subViewKrew = inflater1.inflate(R.layout.opis_badania, null);
+                                                final EditText subEditText2 = subViewKrew.findViewById(R.id.opisEditText);
+                                                final AlertDialog.Builder krew = new AlertDialog.Builder(wizRodz.this);
+                                                krew.setTitle("Czy wyniki rozmazu krwi są dobre? ");
+                                                krew.setSingleChoiceItems(taknielista, -1, new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                                        if (taknielista[i].equals("Tak")) {
+                                                            badaniee.setKrewczypoprawne(true);
+                                                        } else {
+                                                            badaniee.setKrewczypoprawne(false);
+                                                        }
+                                                    }
+                                                });
+                                                krew.setView(subViewKrew);
+                                                krew.setCancelable(false);
+                                                krew.setPositiveButton(R.string.ok_label, new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialogInterface, int which) {
+                                                        if (!subEditText2.getText().toString().equals("")) {
+                                                            badaniee.setKrewopis(subEditText2.toString());
+                                                        }
+                                                        czyok[1] = true;
+                                                    }
+                                                });
+                                                AlertDialog mDialogkrew = krew.create();
+                                                mDialogkrew.show();
                                                 break;
                                             case "Badanie moczu":
                                                 badaniee.setMocz(true);
+                                                czyok[2] = false;
+                                                View subViewMocz = inflater1.inflate(R.layout.opis_badania, null);
+                                                final EditText subEditText3 = subViewMocz.findViewById(R.id.opisEditText);
+                                                final AlertDialog.Builder mocz = new AlertDialog.Builder(wizRodz.this);
+                                                mocz.setTitle("Czy wyniki moczu są dobre? ");
+                                                mocz.setSingleChoiceItems(taknielista, -1, new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                                        if (taknielista[i].equals("Tak")) {
+                                                            badaniee.setMoczczypoprawne(true);
+                                                        } else {
+                                                            badaniee.setMoczczypoprawne(false);
+                                                        }
+                                                    }
+                                                });
+                                                mocz.setView(subViewMocz);
+                                                mocz.setCancelable(false);
+                                                mocz.setPositiveButton(R.string.ok_label, new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialogInterface, int which) {
+                                                        if (!subEditText3.getText().toString().equals("")) {
+                                                            badaniee.setMoczopis(subEditText3.toString());
+                                                        }
+                                                        czyok[2] = true;
+                                                    }
+                                                });
+                                                AlertDialog mDialogmocz = mocz.create();
+                                                mDialogmocz.show();
                                                 break;
                                             case "Badania biochemiczne":
                                                 badaniee.setBiochem(true);
+                                                czyok[3] = false;
+                                                View subViewbiochem = inflater1.inflate(R.layout.opis_badania, null);
+                                                final EditText subEditText4 = subViewbiochem.findViewById(R.id.opisEditText);
+                                                final AlertDialog.Builder biochem = new AlertDialog.Builder(wizRodz.this);
+                                                biochem.setTitle("Czy wyniki badań bio-chem są dobre? ");
+                                                biochem.setSingleChoiceItems(taknielista, -1, new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                                        if (taknielista[i].equals("Tak")) {
+                                                            badaniee.setBiochemczypoprawne(true);
+                                                        } else {
+                                                            badaniee.setBiochemczypoprawne(false);
+                                                        }
+                                                    }
+                                                });
+                                                biochem.setView(subViewbiochem);
+                                                biochem.setCancelable(false);
+                                                biochem.setPositiveButton(R.string.ok_label, new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialogInterface, int which) {
+                                                        if (!subEditText4.getText().toString().equals("")) {
+                                                            badaniee.setBiochemopis(subEditText4.toString());
+                                                        }
+                                                        czyok[3] = true;
+                                                    }
+                                                });
+                                                AlertDialog mDialogbiochem = biochem.create();
+                                                mDialogbiochem.show();
                                                 break;
                                             case "RTG":
                                                 badaniee.setRTG(true);
+                                                czyok[4] = false;
+                                                View subViewRTG = inflater1.inflate(R.layout.opis_badania, null);
+                                                final EditText subEditText5 = subViewRTG.findViewById(R.id.opisEditText);
+                                                final AlertDialog.Builder RTG = new AlertDialog.Builder(wizRodz.this);
+                                                RTG.setTitle("Czy wyniki RTG są dobre? ");
+                                                RTG.setSingleChoiceItems(taknielista, -1, new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                                        if (taknielista[i].equals("Tak")) {
+                                                            badaniee.setRTGczypoprawne(true);
+                                                        } else {
+                                                            badaniee.setRTGczypoprawne(false);
+                                                        }
+                                                    }
+                                                });
+                                                RTG.setView(subViewRTG);
+                                                RTG.setCancelable(false);
+                                                RTG.setPositiveButton(R.string.ok_label, new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialogInterface, int which) {
+                                                        if (!subEditText5.getText().toString().equals("")) {
+                                                            badaniee.setRTGopis(subEditText5.toString());
+                                                        }
+                                                        czyok[4] = true;
+                                                    }
+                                                });
+                                                AlertDialog mDialogRTG = RTG.create();
+                                                mDialogRTG.show();
                                                 break;
                                             case "EKG":
                                                 badaniee.setEKG(true);
+                                                czyok[5] = false;
+                                                View subViewEKG = inflater1.inflate(R.layout.opis_badania, null);
+                                                final EditText subEditText6 = subViewEKG.findViewById(R.id.opisEditText);
+                                                final AlertDialog.Builder EKG = new AlertDialog.Builder(wizRodz.this);
+                                                EKG.setTitle("Czy wyniki EKG są dobre? ");
+                                                EKG.setSingleChoiceItems(taknielista, -1, new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                                        if (taknielista[i].equals("Tak")) {
+                                                            badaniee.setEKGczypoprawne(true);
+                                                        } else {
+                                                            badaniee.setEKGczypoprawne(false);
+                                                        }
+                                                    }
+                                                });
+                                                EKG.setView(subViewEKG);
+                                                EKG.setCancelable(false);
+                                                EKG.setPositiveButton(R.string.ok_label, new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialogInterface, int which) {
+                                                        if (!subEditText6.getText().toString().equals("")) {
+                                                            badaniee.setEKGopis(subEditText6.toString());
+                                                        }
+                                                        czyok[5] = true;
+                                                    }
+                                                });
+                                                AlertDialog mDialogEKG = EKG.create();
+                                                mDialogEKG.show();
                                                 break;
                                             case "USG":
                                                 badaniee.setUSG(true);
+                                                czyok[6] = false;
+                                                View subViewUSG = inflater1.inflate(R.layout.opis_badania, null);
+                                                final EditText subEditText7 = subViewUSG.findViewById(R.id.opisEditText);
+                                                final AlertDialog.Builder USG = new AlertDialog.Builder(wizRodz.this);
+                                                USG.setTitle("Czy wyniki USG są dobre? ");
+                                                USG.setSingleChoiceItems(taknielista, -1, new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                                        if (taknielista[i].equals("Tak")) {
+                                                            badaniee.setUSGczypoprawne(true);
+                                                        } else {
+                                                            badaniee.setUSGczypoprawne(false);
+                                                        }
+                                                    }
+                                                });
+                                                USG.setView(subViewUSG);
+                                                USG.setCancelable(false);
+                                                USG.setPositiveButton(R.string.ok_label, new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialogInterface, int which) {
+                                                        if (!subEditText7.getText().toString().equals("")) {
+                                                            badaniee.setUSGopis(subEditText7.toString());
+                                                        }
+                                                        czyok[6] = true;
+                                                    }
+                                                });
+                                                AlertDialog mDialogUSG = USG.create();
+                                                mDialogUSG.show();
                                                 break;
                                         }
                                     }
                                     if (badUserItem.get(i) == 7 && !subEditText1.getText().toString().matches("")) {
                                         badaniee.setInne(subEditText1.getText().toString());
                                     }
+                                    i++;
+
+                                } while (i < badUserItem.size());
+                                boolean czywszysktkook = true;
+                                for (int k = 0; k < 9; k++) {
+                                    if (czyok[i]) {
+                                        czywszysktkook = true;
+                                    }
+                                    else
+                                    {
+                                        czywszysktkook=false;
+                                        break;
+                                    }
                                 }
-                                dodaj(badaniee);
+                                if (czywszysktkook) {
+                                    dodaj(badaniee);
+                                }
                             }
 
-                            private void dodaj(Badanie badnie) {
-                                db.collection("Wizyta").add(badnie).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                    @Override
-                                    public void onSuccess(DocumentReference documentReference) {
-                                        Toast.makeText(wizRodz.this, "Dodano pomyślnie!", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                            }
+
                         });
                         AlertDialog badOkno = badanie.create();
                         badOkno.show();
                         break;
+
+
                     case "Zabieg":
                         inflater = LayoutInflater.from(wizRodz.this);
                         View subViewZab = inflater.inflate(R.layout.dialog_layout, null);
@@ -389,7 +593,7 @@ public class wizRodz extends AppCompatActivity {
                                 if (wantToCloseDialog) {
                                     Zabieg zabieg = new Zabieg();
                                     zabieg.setNumer_metryki(piesnr);
-                                    zabieg.setDate(data.toString());
+                                    zabieg.setDate(data);
                                     zabieg.setUid(currentUI);
                                     zabieg.setOpis(subEditTextZab.getText().toString());
                                     db.collection("Wizyta").add(zabieg).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -405,6 +609,8 @@ public class wizRodz extends AppCompatActivity {
                             }
                         });
                         break;
+
+
                     case "Zabieg higieniczny":
                         higienItems = getResources().getStringArray(R.array.zabHignien);
                         checkedHigien = new boolean[higienItems.length];
@@ -430,7 +636,7 @@ public class wizRodz extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 ZabHigien zabHigien = new ZabHigien();
                                 zabHigien.setNumer_metryki(piesnr);
-                                zabHigien.setdate(data.toString());
+                                zabHigien.setdate(data);
                                 zabHigien.setUid(currentUI);
                                 for (int i = 0; i < higienUserItem.size(); i++) {
                                     if (checkedHigien[higienUserItem.get(i)]) {
@@ -475,6 +681,13 @@ public class wizRodz extends AppCompatActivity {
             }
         }
     }
-
+    private void dodaj(Badanie badnie) {
+        db.collection("Wizyta").add(badnie).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                Toast.makeText(wizRodz.this, "Dodano pomyślnie!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
 }

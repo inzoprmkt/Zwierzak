@@ -2,18 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Zwierzak.iml" filepath="$PROJECT_DIR$/Zwierzak.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Zwierzak10.iml" filepath="$PROJECT_DIR$/Zwierzak10.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Zwierzak14.iml" filepath="$PROJECT_DIR$/Zwierzak14.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Zwierzak16.iml" filepath="$PROJECT_DIR$/Zwierzak16.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Zwierzak2.iml" filepath="$PROJECT_DIR$/Zwierzak2.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Zwierzak20.iml" filepath="$PROJECT_DIR$/Zwierzak20.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Zwierzak21.iml" filepath="$PROJECT_DIR$/Zwierzak21.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Zwierzak3.iml" filepath="$PROJECT_DIR$/Zwierzak3.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Zwierzak5.iml" filepath="$PROJECT_DIR$/Zwierzak5.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Zwierzak6.iml" filepath="$PROJECT_DIR$/Zwierzak6.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Zwierzak7.iml" filepath="$PROJECT_DIR$/Zwierzak7.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Zwierzak9.iml" filepath="$PROJECT_DIR$/Zwierzak9.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Zwierzak11.iml" filepath="$PROJECT_DIR$/Zwierzak11.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
