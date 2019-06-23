@@ -678,9 +678,6 @@ public class wizRodz extends AppCompatActivity {
                         break;
                 }
             }
-            if (badUserItem.get(i) == 7 && !subEditText1.getText().toString().matches("")) {
-                badaniee.setInne(subEditText1.getText().toString());
-            }
             i++;
         } while (i < badUserItem.size());
     }

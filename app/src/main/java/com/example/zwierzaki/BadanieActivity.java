@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -96,45 +97,109 @@ public class BadanieActivity extends AppCompatActivity {
                         if (documentSnapshot.get(s) != null) {
                             if (documentSnapshot.get(s).toString().equals("true")) {
                                 TextView textView = null;
-
-
+                                String tekst="";
                                 switch (s) {
                                     case "biochem":
                                         textView = new TextView(BadanieActivity.this);
-                                        textView.setText("Badania biochemiczne");
+                                        //textView.setText("Badania biochemiczne");
+                                        tekst+= "Badania biochemiczne" ;
+                                        if(documentSnapshot.get("biochemczypoprawne").toString().equals("true"))
+                                        {
+                                            textView.setTextColor(ContextCompat.getColor(BadanieActivity.this, R.color.good));
+                                        }
+                                        else {
+                                            textView.setTextColor(ContextCompat.getColor(BadanieActivity.this, R.color.bad));
+                                        }
+                                        tekst+="\n"+documentSnapshot.get("biochemopis").toString();
+
                                         break;
                                     case "ekg":
                                         textView = new TextView(BadanieActivity.this);
-                                        textView.setText("EKG");
+                                       // textView.setText("EKG");
+                                        tekst+=  "EKG";
+                                        if(documentSnapshot.get("ekgczypoprawne").toString().equals("true"))
+                                        {
+                                            textView.setTextColor(ContextCompat.getColor(BadanieActivity.this, R.color.good));
+                                        }
+                                        else {
+                                            textView.setTextColor(ContextCompat.getColor(BadanieActivity.this, R.color.bad));
+                                        }
+                                        tekst+="\n"+documentSnapshot.get("ekgopis").toString();
                                         break;
                                     case "krew":
                                         textView = new TextView(BadanieActivity.this);
-                                        textView.setText("Rozmaz krwi");
+                                        //textView.setText("Rozmaz krwi");
+                                        tekst+= "Rozmaz krwi" ;
+                                        if(documentSnapshot.get("krewczypoprawne").toString().equals("true"))
+                                        {
+                                            textView.setTextColor(ContextCompat.getColor(BadanieActivity.this, R.color.good));
+                                        }
+                                        else {
+                                            textView.setTextColor(ContextCompat.getColor(BadanieActivity.this, R.color.bad));
+                                        }
+                                        tekst+="\n"+documentSnapshot.get("krewopis").toString();
                                         break;
                                     case "mocz":
                                         textView = new TextView(BadanieActivity.this);
-                                        textView.setText("Badanie moczu");
+                                       // textView.setText("Badanie moczu");
+                                        tekst+= "Badanie moczu" ;
+                                       if(documentSnapshot.get("moczczypoprawne").toString().equals("true"))
+                                        {
+                                            textView.setTextColor(ContextCompat.getColor(BadanieActivity.this, R.color.good));
+                                        }
+                                        else {
+                                            textView.setTextColor(ContextCompat.getColor(BadanieActivity.this, R.color.bad));
+                                        }
+                                        tekst+="\n"+documentSnapshot.get("moczopis").toString();
                                         break;
                                     case "morfologia":
                                         textView = new TextView(BadanieActivity.this);
-                                        textView.setText("Morfologia");
+                                        //textView.setText("Morfologia");
+                                        tekst+=  "Morfologia";
+                                        if(documentSnapshot.get("morfologiaczypoprawne").toString().equals("true"))
+                                        {
+                                            textView.setTextColor(ContextCompat.getColor(BadanieActivity.this, R.color.good));
+                                        }
+                                        else {
+                                            textView.setTextColor(ContextCompat.getColor(BadanieActivity.this, R.color.bad));
+                                        }
+                                        tekst+="\n"+documentSnapshot.get("morfologiaopis").toString();
                                         break;
                                     case "rtg":
                                         textView = new TextView(BadanieActivity.this);
-                                        textView.setText("RTG");
+                                        //textView.setText("RTG");
+                                        tekst+=  "RTG";
+                                        if(documentSnapshot.get("rtgczypoprawne").toString().equals("true"))
+                                        {
+                                            textView.setTextColor(ContextCompat.getColor(BadanieActivity.this, R.color.good));
+                                        }
+                                        else {
+                                            textView.setTextColor(ContextCompat.getColor(BadanieActivity.this, R.color.bad));
+                                        }
+                                        tekst+="\n"+documentSnapshot.get("rtgopis").toString();
                                         break;
 
                                     case "usg":
                                         textView = new TextView(BadanieActivity.this);
-                                        textView.setText("USG");
+                                        //textView.setText("USG");
+                                        tekst+= "USG" ;
+                                        if(documentSnapshot.get("usgczypoprawne").toString().equals("true"))
+                                        {
+                                            textView.setTextColor(ContextCompat.getColor(BadanieActivity.this, R.color.good));
+                                        }
+                                        else {
+                                            textView.setTextColor(ContextCompat.getColor(BadanieActivity.this, R.color.bad));
+                                        }
+                                        tekst+="\n"+documentSnapshot.get("usgopis").toString();
                                         break;
                                     case "inne":
                                         textView = new TextView(BadanieActivity.this);
                                         textView.setText(documentSnapshot.get("inne").toString());
                                         break;
                                 }
-                                textView.setHeight(70);
-                                textView.setTextSize(20);
+                                textView.setText(tekst);
+                                textView.setHeight(130);
+                                textView.setTextSize(15);
                                 textView.setGravity(Gravity.CENTER);
                                 TableRow r = new TableRow(BadanieActivity.this);
                                 r.setGravity(Gravity.CENTER_HORIZONTAL);
@@ -165,6 +230,9 @@ public class BadanieActivity extends AppCompatActivity {
                 });
             }
         });
+
+
     }
+
 }
 
