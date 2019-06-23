@@ -68,4 +68,10 @@ public class ChipActivity extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public void onBackPressed() {
+        Intent intent=new Intent(ChipActivity.this,WyswietlHistorie.class);
+        intent.putExtra("selected_zwierze",nrmetr);
+        startActivity(intent);
+    }
 }

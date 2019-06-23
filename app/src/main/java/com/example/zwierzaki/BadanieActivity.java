@@ -110,7 +110,10 @@ public class BadanieActivity extends AppCompatActivity {
                                         else {
                                             textView.setTextColor(ContextCompat.getColor(BadanieActivity.this, R.color.bad));
                                         }
+                                        if(documentSnapshot.get("biochemopis")!=null)
+                                        {
                                         tekst+="\n"+documentSnapshot.get("biochemopis").toString();
+                                        }
 
                                         break;
                                     case "ekg":
@@ -124,7 +127,12 @@ public class BadanieActivity extends AppCompatActivity {
                                         else {
                                             textView.setTextColor(ContextCompat.getColor(BadanieActivity.this, R.color.bad));
                                         }
-                                        tekst+="\n"+documentSnapshot.get("ekgopis").toString();
+
+                                        if(documentSnapshot.get("ekgopis")!=null)
+                                        {
+                                            tekst+="\n"+documentSnapshot.get("ekgopis").toString();
+                                        }
+
                                         break;
                                     case "krew":
                                         textView = new TextView(BadanieActivity.this);
@@ -137,7 +145,11 @@ public class BadanieActivity extends AppCompatActivity {
                                         else {
                                             textView.setTextColor(ContextCompat.getColor(BadanieActivity.this, R.color.bad));
                                         }
-                                        tekst+="\n"+documentSnapshot.get("krewopis").toString();
+                                        if(documentSnapshot.get("krewopis")!=null)
+                                        {
+                                            tekst+="\n"+documentSnapshot.get("krewopis").toString();
+                                        }
+
                                         break;
                                     case "mocz":
                                         textView = new TextView(BadanieActivity.this);
@@ -150,7 +162,11 @@ public class BadanieActivity extends AppCompatActivity {
                                         else {
                                             textView.setTextColor(ContextCompat.getColor(BadanieActivity.this, R.color.bad));
                                         }
-                                        tekst+="\n"+documentSnapshot.get("moczopis").toString();
+                                        if(documentSnapshot.get("moczopis")!=null)
+                                        {
+                                            tekst+="\n"+documentSnapshot.get("moczopis").toString();
+                                        }
+
                                         break;
                                     case "morfologia":
                                         textView = new TextView(BadanieActivity.this);
@@ -163,7 +179,11 @@ public class BadanieActivity extends AppCompatActivity {
                                         else {
                                             textView.setTextColor(ContextCompat.getColor(BadanieActivity.this, R.color.bad));
                                         }
-                                        tekst+="\n"+documentSnapshot.get("morfologiaopis").toString();
+                                        if(documentSnapshot.get("morfologiaopis")!=null)
+                                        {
+                                            tekst+="\n"+documentSnapshot.get("morfologiaopis").toString();
+                                        }
+
                                         break;
                                     case "rtg":
                                         textView = new TextView(BadanieActivity.this);
@@ -176,7 +196,12 @@ public class BadanieActivity extends AppCompatActivity {
                                         else {
                                             textView.setTextColor(ContextCompat.getColor(BadanieActivity.this, R.color.bad));
                                         }
-                                        tekst+="\n"+documentSnapshot.get("rtgopis").toString();
+
+                                        if(documentSnapshot.get("rtgopis")!=null)
+                                        {
+                                            tekst+="\n"+documentSnapshot.get("rtgopis").toString();
+                                        }
+
                                         break;
 
                                     case "usg":
@@ -190,7 +215,11 @@ public class BadanieActivity extends AppCompatActivity {
                                         else {
                                             textView.setTextColor(ContextCompat.getColor(BadanieActivity.this, R.color.bad));
                                         }
-                                        tekst+="\n"+documentSnapshot.get("usgopis").toString();
+                                        if(documentSnapshot.get("usgopis")!=null)
+                                        {
+                                            tekst+="\n"+documentSnapshot.get("usgopis").toString();
+                                        }
+
                                         break;
                                     case "inne":
                                         textView = new TextView(BadanieActivity.this);
@@ -232,6 +261,12 @@ public class BadanieActivity extends AppCompatActivity {
         });
 
 
+    }
+    @Override
+    public void onBackPressed() {
+        Intent intent=new Intent(BadanieActivity.this,WyswietlHistorie.class);
+        intent.putExtra("selected_zwierze",nrmetr);
+        startActivity(intent);
     }
 
 }

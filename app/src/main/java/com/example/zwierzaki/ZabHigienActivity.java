@@ -156,4 +156,10 @@ public class ZabHigienActivity extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public void onBackPressed() {
+        Intent intent=new Intent(ZabHigienActivity.this,WyswietlHistorie.class);
+        intent.putExtra("selected_zwierze",nrmetr);
+        startActivity(intent);
+    }
 }

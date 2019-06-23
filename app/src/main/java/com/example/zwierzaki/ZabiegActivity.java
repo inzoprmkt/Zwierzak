@@ -69,4 +69,10 @@ public class ZabiegActivity extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public void onBackPressed() {
+        Intent intent=new Intent(ZabiegActivity.this,WyswietlHistorie.class);
+        intent.putExtra("selected_zwierze",nrmetr);
+        startActivity(intent);
+    }
 }
