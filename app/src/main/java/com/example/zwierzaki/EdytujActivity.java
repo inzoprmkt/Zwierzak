@@ -45,6 +45,7 @@ public class EdytujActivity extends AppCompatActivity {
     String idZwierzaka;
     FirebaseFirestore db;
     String NrMetryki;
+  //  private TextView textViewBlad;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +53,7 @@ public class EdytujActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         currentUser=mAuth.getCurrentUser();
         currentUI=currentUser.getUid();
+      //  textViewBlad=findViewById(R.id.TextViewBlad);
         if(getIntent().hasExtra("selected_zwierze")) {
             idZwierzaka = getIntent().getStringExtra("selected_zwierze");
         //    Toast.makeText(EdytujActivity.this, idZwierzaka + "...", Toast.LENGTH_SHORT).show();
@@ -148,6 +150,40 @@ public class EdytujActivity extends AppCompatActivity {
                     czy_wszystko_ok = false;
 
                 }
+                String toscik="";
+                if (!checkMetryka(NrMetryki)) {
+                    czy_wszystko_ok = false;
+                  //  textViewBlad.setVisibility(View.VISIBLE);
+                    toscik+="Nieprawidlowe imie zwierzecia!\n";
+                }
+                String aNrMetrykiMatki = tNrMetrykiMatki.getText().toString();
+                if (!checkMetryka(NrMetrykiMatki)) {
+                    czy_wszystko_ok = false;
+                  //  textViewBlad.setVisibility(View.VISIBLE);
+                    toscik+="Nieprawidlowy numer metryki matki!\n";
+                }
+                String aNrMetrykiOjca = tNrMetrykiOjca.getText().toString();
+                if (!checkMetryka(NrMetrykiOjca)) {
+                    czy_wszystko_ok = false;
+                  //  textViewBlad.setVisibility(View.VISIBLE);
+                    toscik+="Nieprawidlowy numer metryki ojca!\n";
+                }
+                String aImieZwierzecia = tImieZwierzecia.getText().toString();
+                if (!checkImie(ImieZwierzecia)) {
+                    czy_wszystko_ok = false;
+                   // textViewBlad.setVisibility(View.VISIBLE);
+                    toscik+="Nieprawidlowe imie!\n";
+                }
+                if (!checkDate(data)){
+                    czy_wszystko_ok = false;
+                    // textViewBlad.setVisibility(View.VISIBLE);
+                    toscik+="Nieprawidlowe data!\n";
+                }
+                if (!checkPlec(Plec)){
+                    czy_wszystko_ok = false;
+                    // textViewBlad.setVisibility(View.VISIBLE);
+                    toscik+="Nieprawidlowa plec!\n";
+                }
                 if (czy_wszystko_ok == true) {
                    // Toast.makeText(EdytujActivity.this, idZwierzaka + ".jest..", Toast.LENGTH_SHORT).show();
                     final Zwierze zwierzak=new Zwierze(data,Plec,NrMetryki,NrMetrykiMatki,NrMetrykiOjca,ImieZwierzecia,currentUI,"Zdjecie" + NrMetryki);
@@ -209,7 +245,13 @@ public class EdytujActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    Toast.makeText(EdytujActivity.this, "nieprawidlowe dane!", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(EdytujActivity.this, "nieprawidlowe dane!", Toast.LENGTH_SHORT).show();
+                    if(toscik.length()>1)
+                    {
+                        toscik=toscik.substring(0,toscik.length()-1);
+                        Toast.makeText(EdytujActivity.this, toscik, Toast.LENGTH_SHORT).show();
+                        toscik="";
+                    }
                 }
 
             }
@@ -253,7 +295,14 @@ public class EdytujActivity extends AppCompatActivity {
         }
         return checkFormat;
     }
-
+    public boolean checkPlec(String plec) {
+        if (plec.isEmpty()) {
+            if (plec.equals("Samiec") || plec.equals("Samica")) {
+                return true;
+            }
+        }
+        return false;
+    }
     public boolean checkImie(String imie) {
         boolean checkFormat = true;
         if (!imie.isEmpty()) {
@@ -264,6 +313,15 @@ public class EdytujActivity extends AppCompatActivity {
         else
         {
             checkFormat = false;
+        }
+        return checkFormat;
+    }
+    public boolean checkDate(String date) {
+        boolean checkFormat = false;
+        if (!date.isEmpty()) {
+            if (date.matches("([0-9]{2})/([0-9]{2})/([0-9]{4})")) {
+                checkFormat = true;
+            }
         }
         return checkFormat;
     }

@@ -223,12 +223,25 @@ public class BadanieActivity extends AppCompatActivity {
                                         break;
                                     case "inne":
                                         textView = new TextView(BadanieActivity.this);
-                                        textView.setText(documentSnapshot.get("inne").toString());
+                                        //textView.setText("USG");
+                                        tekst+= "Inne" ;
+                                        if(documentSnapshot.get("inneczypoprawne").toString().equals("true"))
+                                        {
+                                            textView.setTextColor(ContextCompat.getColor(BadanieActivity.this, R.color.good));
+                                        }
+                                        else {
+                                            textView.setTextColor(ContextCompat.getColor(BadanieActivity.this, R.color.bad));
+                                        }
+                                        if(documentSnapshot.get("inneopis")!=null)
+                                        {
+                                            tekst+="\n"+documentSnapshot.get("inneopis").toString();
+                                        }
+
                                         break;
                                 }
                                 textView.setText(tekst);
-                                textView.setHeight(130);
-                                textView.setTextSize(15);
+                                textView.setHeight(85);
+                                textView.setTextSize(14);
                                 textView.setGravity(Gravity.CENTER);
                                 TableRow r = new TableRow(BadanieActivity.this);
                                 r.setGravity(Gravity.CENTER_HORIZONTAL);
@@ -237,10 +250,31 @@ public class BadanieActivity extends AppCompatActivity {
 
                                 layout.addView(r, rowLp);
                             }
+
+
                         }
 
 
                     }
+                    /*if(documentSnapshot.get("inne")!=null) {
+                        String tekst = "";
+                        TextView textView = new TextView(BadanieActivity.this);
+                        textView.setTextColor(ContextCompat.getColor(BadanieActivity.this, R.color.black));
+                        tekst +=  documentSnapshot.get("").toString();
+
+                        textView.setText(tekst);
+                        textView.setHeight(85);
+                        textView.setTextSize(14);
+                        textView.setGravity(Gravity.CENTER);
+                        TableRow r = new TableRow(BadanieActivity.this);
+                        r.setGravity(Gravity.CENTER_HORIZONTAL);
+                        r.addView(textView);
+                        r.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.FILL_PARENT));
+
+                        layout.addView(r, rowLp);
+                    }*/
+
+
                 }
             });
         }

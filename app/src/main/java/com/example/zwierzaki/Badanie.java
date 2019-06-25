@@ -3,6 +3,30 @@ package com.example.zwierzaki;
 import java.util.Date;
 
 public class Badanie {
+    public boolean isInne() {
+        return inne;
+    }
+
+    public void setInne(boolean inne) {
+        this.inne = inne;
+    }
+
+    public boolean isInneczypoprawne() {
+        return inneczypoprawne;
+    }
+
+    public void setInneczypoprawne(boolean inneczypoprawne) {
+        this.inneczypoprawne = inneczypoprawne;
+    }
+
+    public String getInneopis() {
+        return inneopis;
+    }
+
+    public void setInneopis(String inneopis) {
+        this.inneopis = inneopis;
+    }
+
     private String uid;
     private String numer_metryki;
     private String date;
@@ -28,7 +52,9 @@ public class Badanie {
     private boolean USGczypoprawne;
     private String USGopis;
     private String typ;
-    private String inne;
+    private boolean inne;
+    private boolean inneczypoprawne;
+    private String inneopis;
 
     public Badanie() {
         Morfologia=false;
@@ -52,7 +78,6 @@ public class Badanie {
         this.RTG = RTG;
         this.EKG = EKG;
         this.USG = USG;
-        this.inne = inne;
         this.numer_metryki=nrmetr;
         this.typ=type;
     }
@@ -127,14 +152,6 @@ public class Badanie {
 
     public void setUSG(boolean USG) {
         this.USG = USG;
-    }
-
-    public String getInne() {
-        return inne;
-    }
-
-    public void setInne(String inne) {
-        this.inne = inne;
     }
 
     public String getNumer_metryki() {

@@ -5,4 +5,5 @@
     <color name="colorAccent">#BFA47E</color>
     <color name="good">#09E81F</color>
     <color name="bad">#E82609</color>
+    <color name="black">#000000</color>
 </resources>

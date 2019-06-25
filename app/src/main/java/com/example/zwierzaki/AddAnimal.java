@@ -184,7 +184,7 @@ public class AddAnimal extends AppCompatActivity {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressDialog.dismiss();
-                            Toast.makeText(AddAnimal.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                         //   Toast.makeText(AddAnimal.this, "Uploaded", Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {

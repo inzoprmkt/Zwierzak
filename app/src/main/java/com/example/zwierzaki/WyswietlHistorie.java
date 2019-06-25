@@ -144,6 +144,11 @@ public class WyswietlHistorie  extends AppCompatActivity implements Wizyta_Info_
 
 
     }
+    @Override
+    public void onBackPressed() {
+        Intent intent=new Intent(WyswietlHistorie.this,UserProfileActivity.class);
+        startActivity(intent);
+    }
 
 
 }

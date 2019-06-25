@@ -301,7 +301,6 @@ public class wizRodz extends AppCompatActivity {
                                 }
                             }
                         });
-                        badanie.setView(subViewBad);
                         badanie.setCancelable(false);
                         badanie.setPositiveButton("Dodaj", new DialogInterface.OnClickListener() {
                             @Override
@@ -334,11 +333,12 @@ public class wizRodz extends AppCompatActivity {
                                             case "USG":
                                                 badaniee.setUSG(true);
                                                 break;
+                                            case "Inne":
+                                                badaniee.setInne(true);
+                                                break;
                                         }
                                     }
-                                    if (badUserItem.get(i) == 7 && !subEditText1.getText().toString().matches("")) {
-                                        badaniee.setInne(subEditText1.getText().toString());
-                                    }
+
                                 }
                                 dodaj(badaniee);
                             }
@@ -348,7 +348,6 @@ public class wizRodz extends AppCompatActivity {
                                     public void onSuccess(DocumentReference documentReference) {
                                         idglobal=documentReference.getId().toString();
                                         dodajopisy();
-                                        Toast.makeText(wizRodz.this, "Dodano pomyślnie!", Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             }
@@ -648,7 +647,6 @@ public class wizRodz extends AppCompatActivity {
                         mDialogEKG.show();
                         break;
                     case "USG":
-
                         View subViewUSG = inflater1.inflate(R.layout.opis_badania, null);
                         final EditText subEditText7 = subViewUSG.findViewById(R.id.opisEditText);
                         final AlertDialog.Builder USG = new AlertDialog.Builder(wizRodz.this);
@@ -676,17 +674,47 @@ public class wizRodz extends AppCompatActivity {
                         AlertDialog mDialogUSG = USG.create();
                         mDialogUSG.show();
                         break;
+                    case "Inne":
+                        View subViewnazwa = inflater1.inflate(R.layout.nazwa_layout, null);
+                        final EditText subEditText8 = subViewnazwa.findViewById(R.id.nazwaEditText);
+                        final AlertDialog.Builder inne = new AlertDialog.Builder(wizRodz.this);
+                        inne.setTitle("Czy wyniki są dobre? ");
+                        inne.setSingleChoiceItems(taknielista, -1, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                if (taknielista[i].equals("Tak")) {
+                                    baddokum.update("inneczypoprawne",true);
+                                } else {
+                                    baddokum.update("inneczypoprawne",false);
+                                }
+                            }
+                        });
+                        inne.setView(subViewnazwa);
+                        inne.setCancelable(false);
+                        inne.setPositiveButton(R.string.ok_label, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int which) {
+                                if (!subEditText8.getText().toString().equals("")) {
+                                    baddokum.update("inneopis",subEditText8.getText().toString());
+                                }
+                            }
+                        });
+                        AlertDialog mDialoginne = inne.create();
+                        mDialoginne.show();
+                        break;
                 }
             }
             i++;
         } while (i < badUserItem.size());
+        Toast.makeText(wizRodz.this, "Dodano pomyślnie!", Toast.LENGTH_SHORT).show();
+
     }
 
     private void dodaj(Badanie badnie) {
         db.collection("Wizyta").add(badnie).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
-                Toast.makeText(wizRodz.this, "Dodano pomyślnie!", Toast.LENGTH_SHORT).show();
+
             }
         });
     }
